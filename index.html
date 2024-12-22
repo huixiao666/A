@@ -3,172 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="皮卡商店 - 应用下载平台">
     <title>皮卡商店</title>
     <style>
+        :root {
+            --primary-color: #333;
+            --background-color: #f5f5f5;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --text-color: #666;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
 
         body {
-            background-color: #f5f5f5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--background-color);
+            line-height: 1.6;
         }
 
         .header {
-            padding: 10px 15px;
-            background: #fff;
             position: sticky;
             top: 0;
-            z-index: 100;
-        }
-
-        .search-bar {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .search-bar input {
-            padding: 10px;
-            font-size: 16px;
-            width: 100%;
-        }
-
-        .search-bar button {
-            padding: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #1a73e8;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            margin-left: 0px;
-            width: 100%;
-        }
-        
-
-        .app-list {
-            padding: 15px;
-        }
-
-        .app-item {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .app-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            margin-right: 15px;
-        }
-
-        .app-info {
-            flex: 1;
-        }
-
-        .app-name {
-            font-size: 16px;
-            margin-bottom: 4px;
-        }
-
-        .app-category {
-            font-size: 12px;
-            color: #666;
-        }
-
-        .app-size {
-            font-size: 12px;
-            color: #666;
-            margin-left: 10px;
-        }
-
-        .rating {
-            font-size: 12px;
-            color: #666;
-        }
-
-        .hidden {
-            display: none;
-        }
-    </style>
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        }
-
-        body {
-            background-color: #f5f5f5;
-        }
-
-        .header {
-            padding: 10px 15px;
-            background: #fff;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            padding: 1rem;
+            background-color: #fff;
+            box-shadow: 0 2px 5px var(--shadow-color);
+            z-index: 1000;
         }
 
         .search-bar {
-            margin-bottom: 1px;
-            text-align: center;
+            display: flex;
+            gap: 0.5rem;
+            flex: 1;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .search-bar input {
-            padding: 12px;
-            font-size: 15px;
-            width: 100%;
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
         }
 
         .search-bar button {
-            padding: 12px;
-            font-size: 12px;
-            cursor: pointer;
-            background-color: #1a73e8;
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 10px;
-            margin-left: 0px;
-            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .search-bar button:hover {
+            background-color: #0056b3;
         }
 
         .nav {
             display: flex;
-            justify-content: space-around;
-            background: #1a73e8;
-            padding: 12px 0;
-            color: white;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: #fff;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .nav a {
-            color: white;
+            color: var(--primary-color);
             text-decoration: none;
-            font-size: 16px;
+            white-space: nowrap;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .nav a:hover {
+            background-color: #f0f0f0;
         }
 
         .app-list {
-            padding: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem;
         }
 
         .app-item {
             display: flex;
             align-items: center;
-            padding: 5px 0;
-            border-bottom: 1px solid #eee;
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .app-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow-color);
         }
 
         .app-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 5px;
-            margin-right: 5px;
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-right: 1rem;
         }
 
         .app-info {
@@ -176,115 +123,309 @@
         }
 
         .app-name {
-            font-size: 16px;
-            margin-bottom: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .app-name a {
+            color: inherit;
+            text-decoration: none;
         }
 
         .app-category {
-            font-size: 10px;
-            color: #666;
-        }
-
-        .app-size {
-            font-size: 12px;
-            color: #666;
-            margin-left: 12px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-bottom: 0.25rem;
         }
 
         .rating {
-            font-size: 12px;
-            color: #666;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .hidden {
-            display: none;
+        .floating-button {
+            position: fixed;
+            right: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #fff;
+            border: none;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
         }
 
         .floating-refresh {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            background-color: #1a73e8;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            composes: floating-button;
+            bottom: 5.5rem;
         }
-
-        .sidebar {
-            position: fixed;
-            left: -250px;
-            top: 0;
-            width: 100px;
-            height: 100%;
-            background: #fff;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-            transition: left 0.3s;
-            z-index: 200;
-        }
-
-        .sidebar.active {
-            left: 0;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 10px;
-        }
-
-        .sidebar ul li {
-            margin: 10px 0;
-        }
-
-        .sidebar ul li a {
-            text-decoration: none;
-            color: #333;
-        }
-
-        .toggle-sidebar {
-            cursor: pointer;
-            padding: 12px;
-            background: #1a73e8;
-            color: white;
-            border: none;
-            border-radius: 15px;
-        }
-    
-    
-        /* 省略之前的 CSS 样式 */
 
         .floating-top {
-            position: fixed;
-            bottom: 20px;
-            right: 80px;
-            background-color: #1a73e8;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            composes: floating-button;
+            bottom: 15rem;
         }
+
+        .floating-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        @media (max-width: 768px) {
+            .app-list {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .app-icon {
+                width: 48px;
+                height: 48px;
+            }
+
+            .app-name {
+                font-size: 1rem;
+            }
+        }
+
+        /* 添加深色模式支持 */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: #fff;
+                --background-color: #1a1a1a;
+                --shadow-color: rgba(0, 0, 0, 0.3);
+                --text-color: #999;
+            }
+
+            body {
+                color: var(--primary-color);
+            }
+
+            .header,
+            .nav,
+            .app-item {
+                background-color: #2d2d2d;
+            }
+
+            .search-bar input {
+                background-color: #333;
+                color: var(--primary-color);
+                border-color: #444;
+            }
+        }
+        
+        .sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: 2px 0 8px var(--shadow-color);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    z-index: 1001;
+    padding: 1rem 0;
+}
+
+.sidebar.active {
+    transform: translateX(280px);
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem 1rem;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 1rem;
+}
+
+.sidebar-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--primary-color);
+}
+
+.sidebar-menu {
+    list-style: none;
+}
+
+.sidebar-menu li {
+    margin: 0.5rem 0;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.sidebar-menu a:hover {
+    background-color: #f0f0f0;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+    .sidebar {
+        background-color: #2d2d2d;
+    }
+    
+    .sidebar-header {
+        border-bottom-color: #444;
+    }
+    
+    .sidebar-menu a:hover {
+        background-color: #3d3d3d;
+    }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) {
+    .sidebar-menu a:active {
+        background-color: #f0f0f0;
+    }
+}
+
+/* 修改侧滑菜单按钮样式 */
+.toggle-sidebar {
+    font-size: 2rem; /* 增大字体大小 */
+    padding: 0.8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-color);
+    width: 60px; /* 增加按钮宽度 */
+    height: 60px; /* 增加按钮高度 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.toggle-sidebar:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 修改浮动按钮样式 */
+.floating-button {
+    position: fixed;
+    right: 1.5rem;
+    width: 60px; /* 增加按钮宽度 */
+    height: 60px; /* 增加按钮高度 */
+    border-radius: 50%;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem; /* 增大字体大小 */
+}
+
+/* 浮动按钮基础样式 */
+.floating-button {
+    position: fixed;
+    right: 1.5rem;
+    width: 60px; /* 增大按钮尺寸 */
+    height: 60px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem; /* 增大图标尺寸 */
+    z-index: 999;
+}
+
+/* 刷新按钮位置 */
+.floating-refresh {
+    bottom: 6.5rem;
+}
+
+/* 返回顶部按钮位置 */
+.floating-top {
+    bottom: 1.5rem;
+}
+
+/* 按钮悬停效果 */
+.floating-button:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.1);
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+    .floating-button {
+        background-color: #2d2d2d;
+        color: var(--primary-color);
+    }
+
+    .floating-button:hover {
+        background-color: #3d3d3d;
+    }
+}
+
+/* 移动设备适配 */
+@media (max-width: 768px) {
+    .floating-button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        right: 1rem;
+    }
+
+    .floating-refresh {
+        bottom: 5.5rem;
+    }
+
+    .floating-top {
+        bottom: 1rem;
+    }
+}
     </style>
 </head>
 <body>
-    <div class="header">
-        <button class="toggle-sidebar" onclick="toggleSidebar()">☰ 菜单</button>
+    <header class="header">
+        <button class="toggle-sidebar" aria-label="菜单" onclick="toggleSidebar()">☰</button>
         <div class="search-bar">
-    <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="搜索应用">
-    <button onclick="performSearch()">搜索</button>
-    </div>
-   </div>
+            <input type="text" id="searchInput" placeholder="搜索应用" aria-label="搜索应用">
+            <button onclick="performSearch()">搜索</button>
+        </div>
+    </header>
 
-    <div class="nav">
-        <!-- 导航栏链接 -->
+    <nav class="nav">
         <a href="https://huixiao666.github.io/A/">首页</a>
         <a href="https://huixiao666.github.io/A1/">吃瓜</a>
         <a href="https://huixiao666.github.io/A3/">车牌</a>
@@ -292,16 +433,17 @@
         <a href="https://huixiao666.github.io/A4/">搜图</a>
         <a href="https://huixiao666.github.io/A6/">更新</a>
         <a href="https://huixiao666.github.io/A7/">视频</a>
-    </div>
+    </nav>
 
-    <div class="sidebar" id="sidebar">
-        <!-- 侧边栏链接 -->
-           
-        <ul>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>搜索导航</h2>
+            <button class="sidebar-close" onclick="toggleSidebar()" aria-label="关闭菜单">×</button>
+        </div>
+        <ul class="sidebar-menu">
             <li><a href="https://baidu.com">百度</a></li>
             <li><a href="https://m.sogou.com/">搜狗</a></li>
             <li><a href="https://m.so.com/">360</a></li>
-            
             <li><a href="https://www.google.com">谷歌</a></li>
             <li><a href="https://www.bing.com">bing</a></li>
             <li><a href="https://search.yahoo.com/">yahoo</a></li>
@@ -318,39 +460,43 @@
             <li><a href="https://www.fanqianglu.com/free/cnnovel">免费成人涩情小说最全</a></li>
             <li><a href="#">涩情性爱故事网站</a></li>
         </ul>
-    </div>
-    </div>
+    </aside>
 
-    <div class="app-list">
-        <!-- 应用列表 -->
-        <div class="app-item">
-            <img src="https://files.catbox.moe/oadjeu.webp" alt="opera" class="app-icon">
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+        <!-- 侧边栏内容 -->
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <main class="app-list">
+        <article class="app-item">
+            <img src="https://files.catbox.moe/oadjeu.webp" alt="禁毒禁赌图标" class="app-icon" loading="lazy">
             <div class="app-info">
-                <div class="app-name">
-                    <a href="https://files.catbox.moe/tqm99n.jpg" style="color: black; text-decoration: none;">禁毒禁赌</a>
-                    </div>
+                <h2 class="app-name">
+                    <a href="https://files.catbox.moe/tqm99n.jpg">禁毒禁赌</a>
+                </h2>
                 <div class="app-category"></div>
                 <div class="rating">1.0 ★ <span class="app-size">0.0MB</span></div>
             </div>
-        </div>
-        
-        
-        <div class="app-item">
-            <img src="https://files.catbox.moe/p8u1al.webp" alt="绿茶VPN" class="app-icon">
+        </article>
+
+        <article class="app-item">
+            <img src="https://files.catbox.moe/p8u1al.webp" alt="绿茶VPN图标" class="app-icon" loading="lazy">
             <div class="app-info">
-                <div class="app-name">
-                    <a href="https://abcd136.github.io/x/" style="color: black; text-decoration: none;">绿茶VPN</a>
-                </div>
+                <h2 class="app-name">
+                    <a href="https://abcd136.github.io/x/">绿茶VPN</a>
+                </h2>
                 <div class="app-category">实用工具・工具</div>
                 <div class="rating">3.8 ★ <span class="app-size">6.42MB</span></div>
             </div>
-        </div>
+        </article>
         
-                <div class="app-item">
+        
+        <div class="app-item">
             <img src="https://files.catbox.moe/e42k1v.jpg" alt="魔方加速器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x1/" style="color: black; text-decoration: none;">魔方加速器</a>
+                    <a href="https://abcd136.github.io/x1/" >魔方加速器</a>
                 </div>
                 <div class="app-category">实用工具・工具</div>
                 <div class="rating">5.2 ★ <span class="app-size">27.01MB</span></div>
@@ -361,7 +507,7 @@
             <img src="https://files.catbox.moe/8pqs56.png" alt="旋风加速器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x2/" style="color: black; text-decoration: none;">旋风加速器</a>
+                    <a href="https://abcd136.github.io/x2/" >旋风加速器</a>
                 </div>
                 <div class="app-category">实用工具・小工具</div>
                 <div class="rating">4.8 ★ <span class="app-size">17.22MB</span></div>
@@ -372,7 +518,7 @@
             <img src="https://files.catbox.moe/r1nrpo.png" alt="起飞VPN" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x3/" style="color: black; text-decoration: none;">起飞VPN</a>
+                    <a href="https://abcd136.github.io/x3/" >起飞VPN</a>
                 </div>
                 <div class="app-category">实用工具・小工具</div>
                 <div class="rating">4.9 ★ <span class="app-size">76.60MB</span></div>
@@ -383,7 +529,7 @@
             <img src="https://files.catbox.moe/7yqkxt.jpg" alt="迷雾通" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x4/" style="color: black; text-decoration: none;">迷雾通</a>
+                    <a href="https://abcd136.github.io/x4/" >迷雾通</a>
                 </div>
                 <div class="app-category">实用工具・小工具</div>
                 <div class="rating">2.9 ★ <span class="app-size">29.97MB</span></div>
@@ -394,7 +540,7 @@
             <img src="https://files.catbox.moe/88xttt.jpg" alt="ProtonVPN" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x5/" style="color: black; text-decoration: none;">ProtonVPN</a>
+                    <a href="https://abcd136.github.io/x5/" >ProtonVPN</a>
                 </div>
                 <div class="app-category">实用工具・小工具</div>
                 <div class="rating">4.2 ★ <span class="app-size">25.72MB</span></div>
@@ -405,7 +551,7 @@
             <img src="https://files.catbox.moe/e091xk.png" alt="小美VPN" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x7/" style="color: black; text-decoration: none;">小美VPN</a>
+                    <a href="https://abcd136.github.io/x7/" >小美VPN</a>
                 </div>
                 <div class="app-category">实用工具・小工具</div>
                 <div class="rating">3.5 ★ <span class="app-size">20.01MB</span></div>
@@ -416,7 +562,7 @@
             <img src="https://files.catbox.moe/ipsze9.webp" alt="小米" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x8/" style="color: black; text-decoration: none;">小米加速器</a>
+                    <a href="https://abcd136.github.io/x8/" >小米加速器</a>
                 </div>
                 <div class="app-category">实用工具・小工具</div>
                 <div class="rating">3.9 ★ <span class="app-size">49.55MB</span></div>
@@ -427,7 +573,7 @@
             <img src="https://files.catbox.moe/uglh6m.jpg" alt="快柠檬" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x9/" style="color: black; text-decoration: none;">快柠檬</a>
+                    <a href="https://abcd136.github.io/x9/" >快柠檬</a>
                 </div>
                 <div class="app-category">实用工具・小工具</div>
                 <div class="rating">3.7 ★ <span class="app-size">36.69MB</span></div>
@@ -438,7 +584,7 @@
             <img src="https://files.catbox.moe/7wvpra.jpg" alt="快连" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x12/" style="color: black; text-decoration: none;">快连</a>
+                    <a href="https://abcd136.github.io/x12/" >快连</a>
                 </div>
                 <div class="app-category">实用工具・小工具</div>
                 <div class="rating">4.1 ★ <span class="app-size">30.04MB</span></div>
@@ -449,7 +595,7 @@
             <img src="https://files.catbox.moe/r6dggc.png" alt="汤姆" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x19/" style="color: black; text-decoration: none;">汤姆加速器</a>
+                    <a href="https://abcd136.github.io/x19/" >汤姆加速器</a>
                 </div>
                 <div class="app-category">实用工具・小工具</div>
                 <div class="rating">3.3 ★ <span class="app-size">51.15MB</span></div>
@@ -460,7 +606,7 @@
             <img src="https://files.catbox.moe/j0oqpv.png" alt="毒舌" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x32/" style="color: black; text-decoration: none;">毒舌加速器</a>
+                    <a href="https://abcd136.github.io/x32/" >毒舌加速器</a>
                 </div>
                 <div class="app-category">实用工具・小工具</div>
                 <div class="rating">5.9 ★ <span class="app-size">26.53MB</span></div>
@@ -471,7 +617,7 @@
             <img src="https://via.placeholder.com/50" alt="白鲸" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/xXECL0uh" style="color: black; text-decoration: none;">白鲸加速器</a>
+                    <a href="https://share.feijipan.com/s/xXECL0uh" >白鲸加速器</a>
                 </div>
                 <div class="app-category">实用工具・小工具</div>
                 <div class="rating">2.9 ★ <span class="app-size">28.61MB</span></div>
@@ -482,7 +628,7 @@
             <img src="https://files.catbox.moe/f8v9t3.jpg" alt="雪女" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x6/" style="color: black; text-decoration: none;">美少女万华镜异闻 雪女</a>
+                    <a href="https://abcd136.github.io/x6/" >美少女万华镜异闻 雪女</a>
             </div>
                 <div class="app-category">游戏・角色扮演</div>
                 <div class="rating">8.6 ★ <span class="app-size">1.07GB</span></div>
@@ -493,7 +639,7 @@
             <img src="https://files.catbox.moe/rsasj0.jpg" alt="妹～" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x17/" style="color: black; text-decoration: none;">妹～团乐的刻～</a>
+                    <a href="https://abcd136.github.io/x17/" >妹～团乐的刻～</a>
             </div>
                 <div class="app-category">游戏・剧情线</div>
                 <div class="rating">5.8 ★ <span class="app-size">141.23MB</span></div>
@@ -504,7 +650,7 @@
             <img src="https://files.catbox.moe/3f1c6z.png" alt="刘婵" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x18/" style="color: black; text-decoration: none;">刘婵养成计划</a>
+                    <a href="https://abcd136.github.io/x18/" >刘婵养成计划</a>
             </div>
                 <div class="app-category">游戏・角色养成</div>
                 <div class="rating">6.7 ★ <span class="app-size">410.69MB</span></div>
@@ -515,7 +661,7 @@
             <img src="https://files.catbox.moe/cqzt8e.jpg" alt="与女大生的同居生活" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x20/" style="color: black; text-decoration: none;">与女大生的同居生活</a>
+                    <a href="https://abcd136.github.io/x20/" >与女大生的同居生活</a>
             </div>
                 <div class="app-category">游戏・角色养成</div>
                 <div class="rating">4.5 ★ <span class="app-size">210MB</span></div>
@@ -526,7 +672,7 @@
             <img src="https://files.catbox.moe/5k2ihy.jpg" alt="金庸群侠传X" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x24/" style="color: black; text-decoration: none;">金庸群侠传X</a>
+                    <a href="https://abcd136.github.io/x24/" >金庸群侠传X</a>
             </div>
                 <div class="app-category">游戏・角色养成</div>
                 <div class="rating">3.6 ★ <span class="app-size">1.73GB</span></div>
@@ -537,7 +683,7 @@
             <img src="https://files.catbox.moe/78tqlg.jpg" alt="别对我妹妹出手" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x25/" style="color: black; text-decoration: none;">别对我妹妹出手</a>
+                    <a href="https://abcd136.github.io/x25/" >别对我妹妹出手</a>
             </div>
                 <div class="app-category">游戏・角色养成</div>
                 <div class="rating">2.4 ★ <span class="app-size">613MB</span></div>
@@ -548,7 +694,7 @@
             <img src="https://files.catbox.moe/8ir1nq.jpg" alt="在淫魔的馆中被榨取" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x26/" style="color: black; text-decoration: none;">在淫魔的馆中被榨取</a>
+                    <a href="https://abcd136.github.io/x26/" >在淫魔的馆中被榨取</a>
             </div>
                 <div class="app-category">游戏・角色养成</div>
                 <div class="rating">2.1 ★ <span class="app-size">268.9MB</span></div>
@@ -559,7 +705,7 @@
             <img src="https://files.catbox.moe/fov1mw.jpg" alt="怪物导师" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x33/" style="color: black; text-decoration: none;">怪兽导师</a>
+                    <a href="https://abcd136.github.io/x33/" >怪兽导师</a>
             </div>
                 <div class="app-category">游戏・角色养成</div>
                 <div class="rating">2.8 ★ <span class="app-size">1.50GB</span></div>
@@ -570,7 +716,7 @@
             <img src="https://files.catbox.moe/cwvsno.jpg" alt="玛雅和朋友们" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x35/" style="color: black; text-decoration: none;">玛雅和朋友们</a>
+                    <a href="https://abcd136.github.io/x35/" >玛雅和朋友们</a>
             </div>
                 <div class="app-category">游戏・探索</div>
                 <div class="rating">1.8 ★ <span class="app-size">406.86MB</span></div>
@@ -581,7 +727,7 @@
             <img src="https://files.catbox.moe/i5ndtf.jpg" alt="小妖精" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x38/" style="color: black; text-decoration: none;">小妖精飞机杯</a>
+                    <a href="https://abcd136.github.io/x38/" >小妖精飞机杯</a>
             </div>
                 <div class="app-category">游戏・互动触摸</div>
                 <div class="rating">4.5 ★ <span class="app-size">110.89MB</span></div>
@@ -592,7 +738,7 @@
             <img src="https://files.catbox.moe/x1v9bh.jpg" alt="MT管理器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x39/" style="color: black; text-decoration: none;">MT管理器</a>
+                    <a href="https://abcd136.github.io/x39/" >MT管理器</a>
             </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">5.0 ★ <span class="app-size">20.43MB</span></div>
@@ -603,7 +749,7 @@
             <img src="https://files.catbox.moe/aw0amy.webp" alt="ES文件浏览器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x10/" style="color: black; text-decoration: none;">ES文件浏览器</a>
+                    <a href="https://abcd136.github.io/x10/" >ES文件浏览器</a>
             </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">6.8 ★ <span class="app-size">44.05MB</span></div>
@@ -614,7 +760,7 @@
             <img src="https://files.catbox.moe/3sdn38.png" alt="磁力云" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x11/" style="color: black; text-decoration: none;">磁力云</a>
+                    <a href="https://abcd136.github.io/x11/" >磁力云</a>
                 </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">6.2 ★ <span class="app-size">33.91MB</span></div>
@@ -625,7 +771,7 @@
             <img src="https://files.catbox.moe/290hna.jpg" alt="阅读Pro" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x13/" style="color: black; text-decoration: none;">阅读Pro</a>
+                    <a href="https://abcd136.github.io/x13/" >阅读Pro</a>
             </div>
                 <div class="app-category">实用・小说</div>
                 <div class="rating">4.2 ★ <span class="app-size">19.06MB</span></div>
@@ -636,7 +782,7 @@
             <img src="https://files.catbox.moe/oeyekz.png" alt="Cimoc" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x14/" style="color: black; text-decoration: none;">Cimoc漫画</a>
+                    <a href="https://abcd136.github.io/x14/" >Cimoc漫画</a>
             </div>
                 <div class="app-category">实用・漫画</div>
                 <div class="rating">4.3 ★ <span class="app-size">35.28MB</span></div>
@@ -647,7 +793,7 @@
             <img src="https://files.catbox.moe/wtf192.png" alt="樱花" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://www.295yhw.com/" style="color: black; text-decoration: none;">樱花动漫</a>
+                    <a href="https://www.295yhw.com/" >樱花动漫</a>
             </div>
                 <div class="app-category">实用・网站</div>
                 <div class="rating">6.2 ★ <span class="app-size"></span></div>
@@ -658,7 +804,7 @@
             <img src="https://files.catbox.moe/qh80ib.jpg" alt="禁漫" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x15/" style="color: black; text-decoration: none;">禁漫天堂</a>
+                    <a href="https://abcd136.github.io/x15/" >禁漫天堂</a>
             </div>
                 <div class="app-category">实用・漫画</div>
                 <div class="rating">5.3 ★ <span class="app-size">36.56MB</span></div>
@@ -669,7 +815,7 @@
             <img src="https://files.catbox.moe/el7o2v.png" alt="哗咔" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x16/" style="color: black; text-decoration: none;">哗咔</a>
+                    <a href="https://abcd136.github.io/x16/" >哗咔</a>
             </div>
                 <div class="app-category">实用・漫画</div>
                 <div class="rating">4.1 ★ <span class="app-size">12.86MB</span></div>
@@ -680,7 +826,7 @@
             <img src="https://files.catbox.moe/g9epkm.png" alt="可可影视" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x21/" style="color: black; text-decoration: none;">可可影视</a>
+                    <a href="https://abcd136.github.io/x21/" >可可影视</a>
             </div>
                 <div class="app-category">实用・影视</div>
                 <div class="rating">5.6 ★ <span class="app-size">27.74MB</span></div>
@@ -691,7 +837,7 @@
             <img src="https://files.catbox.moe/l4tvze.png" alt="localsend" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x23/" style="color: black; text-decoration: none;">localsend</a>
+                    <a href="https://abcd136.github.io/x23/" >localsend</a>
             </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.8 ★ <span class="app-size">17.20MB</span></div>
@@ -702,7 +848,7 @@
             <img src="https://files.catbox.moe/38lc9g.jpg" alt="temp-mail" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x27/" style="color: black; text-decoration: none;">temp-mail</a>
+                    <a href="https://abcd136.github.io/x27/" >temp-mail</a>
             </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">3.1 ★ <span class="app-size">7.6MB</span></div>
@@ -713,7 +859,7 @@
             <img src="https://files.catbox.moe/bvq52f.jpg" alt="temp-mail" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x28/" style="color: black; text-decoration: none;">temp-mail</a>
+                    <a href="https://abcd136.github.io/x28/" >temp-mail</a>
             </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">3.2 ★ <span class="app-size">16.93MB</span></div>
@@ -724,7 +870,7 @@
             <img src="https://files.catbox.moe/2t7wmh.png" alt="猫咪社区" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x29/" style="color: black; text-decoration: none;">猫咪社区</a>
+                    <a href="https://abcd136.github.io/x29/" >猫咪社区</a>
             </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">3.4 ★ <span class="app-size">16.15MB</span></div>
@@ -735,7 +881,7 @@
             <img src="https://files.catbox.moe/83yucb.jpg" alt="囧次元" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x31/" style="color: black; text-decoration: none;">囧次元</a>
+                    <a href="https://abcd136.github.io/x31/" >囧次元</a>
             </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">3.6 ★ <span class="app-size">29.40MB</span></div>
@@ -746,7 +892,7 @@
             <img src="https://files.catbox.moe/p8u1al.webp" alt="绿茶VPN" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x36/" style="color: black; text-decoration: none;">绿茶VPN的问题</a>
+                    <a href="https://abcd136.github.io/x36/" >绿茶VPN的问题</a>
                     </div>
                 <div class="app-category"></div>
                 <div class="rating">3.8 ★ <span class="app-size">6280人觉得很赞</span></div>
@@ -757,7 +903,7 @@
             <img src="https://via.placeholder.com/50" alt="电脑VPN" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x22/" style="color: black; text-decoration: none;">关于电脑VPN的问题</a>
+                    <a href="https://abcd136.github.io/x22/" >关于电脑VPN的问题</a>
             </div>
                 <div class="app-category"></div>
                 <div class="rating">3.8 ★ <span class="app-size">350人觉得很赞</span></div>
@@ -768,7 +914,7 @@
             <img src="https://files.catbox.moe/2t7wmh.png" alt="猫咪" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x30/" style="color: black; text-decoration: none;">猫咪社区的问题</a>
+                    <a href="https://abcd136.github.io/x30/" >猫咪社区的问题</a>
             </div>
                 <div class="app-category"></div>
                 <div class="rating">2.6 ★ <span class="app-size">280人觉得很赞</span></div>
@@ -779,7 +925,7 @@
             <img src="https://files.catbox.moe/s23zzp.jpg" alt="美女图" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://files.catbox.moe/p13kjz.txt" style="color: black; text-decoration: none;">经典修仙色文《美女图》</a>
+                    <a href="https://files.catbox.moe/p13kjz.txt" >经典修仙色文《美女图》</a>
             </div>
                 <div class="app-category"></div>
                 <div class="rating">8.8 ★ <span class="app-size">19387456280人觉得很赞</span></div>
@@ -790,7 +936,7 @@
             <img src="https://files.catbox.moe/x1v9bh.jpg" alt="MT管理器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x40/" style="color: black; text-decoration: none;">MT管理器的问题</a>
+                    <a href="https://abcd136.github.io/x40/" >MT管理器的问题</a>
             </div>
                 <div class="app-category"></div>
                 <div class="rating">5.0 ★ <span class="app-size">21580人觉得很赞</span></div>
@@ -801,7 +947,7 @@
             <img src="https://files.catbox.moe/hs9qj4.jpg" alt="涩涩" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/D/" style="color: black; text-decoration: none;">在线观看涩涩视频</a>
+                    <a href="https://abcd136.github.io/D/" >在线观看涩涩视频</a>
             </div>
                 <div class="app-category"></div>
                 <div class="rating">3.0 ★ <span class="app-size">371580人觉得很赞</span></div>
@@ -812,7 +958,7 @@
             <img src="https://via.placeholder.com/50" alt="＃" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://www.downloadnth.com/download.html" style="color: black; text-decoration: none;">nthLink</a>
+                    <a href="https://www.downloadnth.com/download.html" >nthLink</a>
             </div>
                 <div class="app-category"></div>
                 <div class="rating">1.9 ★<span class="app-size"></span></div>
@@ -823,7 +969,7 @@
             <img src="https://via.placeholder.com/50" alt="哔哩哔哩" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/ctDRQY4h" style="color: black; text-decoration: none;">哔哩哔哩国际版</a>
+                    <a href="https://share.feijipan.com/s/ctDRQY4h" >哔哩哔哩国际版</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.5 ★ <span class="app-size">2.77MB</span></div>
@@ -834,7 +980,7 @@
             <img src="https://via.placeholder.com/50" alt="推特" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/b2DRQf9w" style="color: black; text-decoration: none;">推特</a>
+                    <a href="https://share.feijipan.com/s/b2DRQf9w" >推特</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.1 ★ <span class="app-size">2.77MB</span></div>
@@ -845,7 +991,7 @@
             <img src="https://via.placeholder.com/50" alt="youtube" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/KhDRQiDj" style="color: black; text-decoration: none;">油管</a>
+                    <a href="https://share.feijipan.com/s/KhDRQiDj" >油管</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.2 ★ <span class="app-size">2.77MB</span></div>
@@ -856,7 +1002,7 @@
             <img src="https://via.placeholder.com/50" alt="谷歌" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/xJECutmX" style="color: black; text-decoration: none;">谷歌浏览器</a>
+                    <a href="https://share.feijipan.com/s/xJECutmX" >谷歌浏览器</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.3 ★ <span class="app-size">2.77MB</span></div>
@@ -867,7 +1013,7 @@
             <img src="https://via.placeholder.com/50" alt="哔哩哔哩" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/PODRQk9z" style="color: black; text-decoration: none;">脸盘</a>
+                    <a href="https://share.feijipan.com/s/PODRQk9z" >脸盘</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.0 ★ <span class="app-size">2.77MB</span></div>
@@ -878,7 +1024,7 @@
             <img src="https://via.placeholder.com/50" alt="百科全书" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/pHDRQl7C" style="color: black; text-decoration: none;">自由的百科全书</a>
+                    <a href="https://share.feijipan.com/s/pHDRQl7C" >自由的百科全书</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.1 ★ <span class="app-size">2.77MB</span></div>
@@ -889,7 +1035,7 @@
             <img src="https://via.placeholder.com/50" alt="bing" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/tBDRQoTw" style="color: black; text-decoration: none;">Bing</a>
+                    <a href="https://share.feijipan.com/s/tBDRQoTw" >Bing</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.2 ★ <span class="app-size">2.77MB</span></div>
@@ -900,7 +1046,7 @@
             <img src="https://via.placeholder.com/50" alt="NICONICO" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/E6DRQqxR" style="color: black; text-decoration: none;">NICONICO</a>
+                    <a href="https://share.feijipan.com/s/E6DRQqxR" >NICONICO</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.5 ★ <span class="app-size">2.77MB</span></div>
@@ -911,7 +1057,7 @@
             <img src="https://via.placeholder.com/50" alt="pixiv" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/mODRQrgi" style="color: black; text-decoration: none;">pixiv</a>
+                    <a href="https://share.feijipan.com/s/mODRQrgi" >pixiv</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.3 ★ <span class="app-size">2.77MB</span></div>
@@ -922,7 +1068,7 @@
             <img src="https://via.placeholder.com/50" alt="Telegram" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/1rDRQtz8" style="color: black; text-decoration: none;">电报</a>
+                    <a href="https://share.feijipan.com/s/1rDRQtz8" >电报</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">3.5 ★ <span class="app-size">71.86MB</span></div>
@@ -933,7 +1079,7 @@
             <img src="https://via.placeholder.com/50" alt="VLC" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/KWDRQulJ" style="color: black; text-decoration: none;">VLC</a>
+                    <a href="https://share.feijipan.com/s/KWDRQulJ" >VLC</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.6 ★ <span class="app-size">34.49MB</span></div>
@@ -944,7 +1090,7 @@
             <img src="https://via.placeholder.com/50" alt="Discord" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/BZDRQSV4" style="color: black; text-decoration: none;">Discord</a>
+                    <a href="https://share.feijipan.com/s/BZDRQSV4" >Discord</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.5 ★ <span class="app-size">283MB</span></div>
@@ -955,7 +1101,7 @@
             <img src="https://via.placeholder.com/50" alt="视频AE特效制作" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/KHDR1TT2" style="color: black; text-decoration: none;">视频AE特效制作</a>
+                    <a href="https://share.feijipan.com/s/KHDR1TT2" >视频AE特效制作</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.0 ★ <span class="app-size">152MB</span></div>
@@ -966,7 +1112,7 @@
             <img src="https://via.placeholder.com/50" alt="FastSurf" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/oDDR1DXx" style="color: black; text-decoration: none;">FastSurfVPN</a>
+                    <a href="https://share.feijipan.com/s/oDDR1DXx" >FastSurfVPN</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">3.4 ★ <span class="app-size">25.98MB</span></div>
@@ -977,7 +1123,7 @@
             <img src="https://via.placeholder.com/50" alt="菜鸟" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/OdDR1ErY" style="color: black; text-decoration: none;">菜鸟免费VPN</a>
+                    <a href="https://share.feijipan.com/s/OdDR1ErY" >菜鸟免费VPN</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.3 ★ <span class="app-size">33.35MB</span></div>
@@ -988,7 +1134,7 @@
             <img src="https://via.placeholder.com/50" alt="虚拟" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/R7DR10gy" style="color: black; text-decoration: none;">虚拟定位</a>
+                    <a href="https://share.feijipan.com/s/R7DR10gy" >虚拟定位</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.7 ★ <span class="app-size">22.69MB</span></div>
@@ -999,7 +1145,7 @@
             <img src="https://via.placeholder.com/50" alt="车来了" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/ylDR1NEg" style="color: black; text-decoration: none;">车来了</a>
+                    <a href="https://share.feijipan.com/s/ylDR1NEg" >车来了</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.6 ★ <span class="app-size">100MB</span></div>
@@ -1010,7 +1156,7 @@
             <img src="https://via.placeholder.com/50" alt="APK" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/8LDR1XbG" style="color: black; text-decoration: none;">apk去签名</a>
+                    <a href="https://share.feijipan.com/s/8LDR1XbG" >apk去签名</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">19.12MB</span></div>
@@ -1021,7 +1167,7 @@
             <img src="https://via.placeholder.com/50" alt="P2P" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/vMDR1Zzp" style="color: black; text-decoration: none;">P2P下载器</a>
+                    <a href="https://share.feijipan.com/s/vMDR1Zzp" >P2P下载器</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.2 ★ <span class="app-size">38.52MB</span></div>
@@ -1032,7 +1178,7 @@
             <img src="https://via.placeholder.com/50" alt="被卡住的女孩" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/k3DR11k6" style="color: black; text-decoration: none;">被卡住的女孩</a>
+                    <a href="https://share.feijipan.com/s/k3DR11k6" >被卡住的女孩</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">2.2 ★ <span class="app-size">45.60MB</span></div>
@@ -1043,7 +1189,7 @@
             <img src="https://via.placeholder.com/50" alt="奇妙奴隶教育化计划" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/mGDR146d" style="color: black; text-decoration: none;">奇妙奴隶教育化计划</a>
+                    <a href="https://share.feijipan.com/s/mGDR146d" >奇妙奴隶教育化计划</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.6 ★ <span class="app-size">272MB</span></div>
@@ -1054,7 +1200,7 @@
             <img src="https://via.placeholder.com/50" alt="吃人的柜子" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/fnDR1bZs" style="color: black; text-decoration: none;">吃人的柜子</a>
+                    <a href="https://share.feijipan.com/s/fnDR1bZs" >吃人的柜子</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.7 ★ <span class="app-size">332MB</span></div>
@@ -1065,7 +1211,7 @@
             <img src="https://via.placeholder.com/50" alt="你以为这样就能忍住射精吗" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/oPDR1eCY" style="color: black; text-decoration: none;">你以为这样就能忍住射精吗？</a>
+                    <a href="https://share.feijipan.com/s/oPDR1eCY" >你以为这样就能忍住射精吗？</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.1 ★ <span class="app-size">372MB</span></div>
@@ -1076,7 +1222,7 @@
             <img src="https://via.placeholder.com/50" alt="睡奸模拟器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/qdDR19M6" style="color: black; text-decoration: none;">睡奸模拟器</a>
+                    <a href="https://share.feijipan.com/s/qdDR19M6" >睡奸模拟器</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.6 ★ <span class="app-size">126MB</span></div>
@@ -1087,7 +1233,7 @@
             <img src="https://via.placeholder.com/50" alt="NTR编年史" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/1UDR1fXT" style="color: black; text-decoration: none;">NTR编年史</a>
+                    <a href="https://share.feijipan.com/s/1UDR1fXT" >NTR编年史</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">2.5 ★ <span class="app-size">416MB</span></div>
@@ -1098,7 +1244,7 @@
             <img src="https://via.placeholder.com/50" alt="直到有女朋友" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/FzDR1hSg" style="color: black; text-decoration: none;">直到有女朋友</a>
+                    <a href="https://share.feijipan.com/s/FzDR1hSg" >直到有女朋友</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">2.0 ★ <span class="app-size">613MB</span></div>
@@ -1109,7 +1255,7 @@
             <img src="https://via.placeholder.com/50" alt="人鱼の歌姫" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/qsAo6AN1" style="color: black; text-decoration: none;">人鱼の歌姫</a>
+                    <a href="https://share.feijipan.com/s/qsAo6AN1" >人鱼の歌姫</a>
                     </div>
                 <div class="app-category">动漫・里番</div>
                 <div class="rating">3.0 ★ <span class="app-size">224MB</span></div>
@@ -1120,7 +1266,7 @@
             <img src="https://via.placeholder.com/50" alt="Ane Chijo Max Heart" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/haAr3vWp" style="color: black; text-decoration: none;">Ane Chijo Max Heart</a>
+                    <a href="https://share.feijipan.com/s/haAr3vWp" >Ane Chijo Max Heart</a>
                     </div>
                 <div class="app-category">动漫・里番</div>
                 <div class="rating">0.7 ★ <span class="app-size">387MB</span></div>
@@ -1131,7 +1277,7 @@
             <img src="https://via.placeholder.com/50" alt="オナホ教室 ～女子全員妊娠計画～" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/KpCEGhMu" style="color: black; text-decoration: none;">オナホ教室 ～女子全員妊娠計画～</a>
+                    <a href="https://share.feijipan.com/s/KpCEGhMu" >オナホ教室 ～女子全員妊娠計画～</a>
                     </div>
                 <div class="app-category">动漫・里番</div>
                 <div class="rating">3.0 ★ <span class="app-size">247MB</span></div>
@@ -1142,7 +1288,7 @@
             <img src="https://via.placeholder.com/50" alt="" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="#" style="color: black; text-decoration: none;">隔空草逼
+                    <a href="#" >隔空草逼
 </a>
                     </div>
                 <div class="app-category">动漫・里番</div>
@@ -1161,7 +1307,7 @@
             <img src="https://via.placeholder.com/50" alt="" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="#" style="color: black; text-decoration: none;">好看的</a>
+                    <a href="#" >好看的</a>
                     </div>
                 <div class="app-category">动漫・里番</div>
                 <div class="rating">
@@ -1180,7 +1326,7 @@
             <img src="https://via.placeholder.com/50" alt="南京大屠杀影片" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/IyBUeFjV" style="color: black; text-decoration: none;">一部可能你从未看过的南京大屠杀影片</a>
+                    <a href="https://share.feijipan.com/s/IyBUeFjV" >一部可能你从未看过的南京大屠杀影片</a>
                     </div>
                 <div class="app-category">电影・影片</div>
                 <div class="rating">3.0 ★ <span class="app-size">38.25MB</span></div>
@@ -1191,7 +1337,7 @@
             <img src="https://via.placeholder.com/50" alt="太残忍了！" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/TABU3Gj7" style="color: black; text-decoration: none;">这日本人亲口说的，太残忍了！</a>
+                    <a href="https://share.feijipan.com/s/TABU3Gj7" >这日本人亲口说的，太残忍了！</a>
                     </div>
                 <div class="app-category">记录・影片</div>
                 <div class="rating">0.7 ★ <span class="app-size">1.39MB</span></div>
@@ -1202,7 +1348,7 @@
             <img src="https://via.placeholder.com/50" alt="黑太阳南京大屠杀" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/sFDR2k3G" style="color: black; text-decoration: none;">黑太阳南京大屠杀</a>
+                    <a href="https://share.feijipan.com/s/sFDR2k3G" >黑太阳南京大屠杀</a>
                     </div>
                 <div class="app-category">电影・影片</div>
                 <div class="rating">3.0 ★ <span class="app-size">648MB</span></div>
@@ -1213,7 +1359,7 @@
             <img src="https://via.placeholder.com/50" alt="纪录片-欧美-《南京大屠杀》" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/j7BUQRbh" style="color: black; text-decoration: none;">纪录片-欧美-《南京大屠杀》</a>
+                    <a href="https://share.feijipan.com/s/j7BUQRbh" >纪录片-欧美-《南京大屠杀》</a>
                     </div>
                 <div class="app-category">电影・影片</div>
                 <div class="rating">1.6 ★ <span class="app-size">344MB</span></div>
@@ -1224,7 +1370,7 @@
             <img src="https://via.placeholder.com/50" alt="（南京大屠杀的内幕）" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/s8BUQfTM" style="color: black; text-decoration: none;">（南京大屠杀的内幕）</a>
+                    <a href="https://share.feijipan.com/s/s8BUQfTM" >（南京大屠杀的内幕）</a>
                     </div>
                 <div class="app-category">记录・影片</div>
                 <div class="rating">1.0 ★ <span class="app-size">27.58MB</span></div>
@@ -1235,7 +1381,7 @@
             <img src="https://via.placeholder.com/50" alt="建筑工地施工" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/TpDR3dNW" style="color: black; text-decoration: none;">1998年8月18日建筑工地施工过程中</a>
+                    <a href="https://share.feijipan.com/s/TpDR3dNW" >1998年8月18日建筑工地施工过程中</a>
                     </div>
                 <div class="app-category">影片・图片</div>
                 <div class="rating">1.1 ★ <span class="app-size">1.41MB</span></div>
@@ -1246,7 +1392,7 @@
             <img src="https://via.placeholder.com/50" alt="ZArchiver" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/LuAhiMrI" style="color: black; text-decoration: none;">ZArchiver</a>
+                    <a href="https://share.feijipan.com/s/LuAhiMrI" >ZArchiver</a>
                     </div>
                 <div class="app-category">压缩・解压</div>
                 <div class="rating">3.0 ★ <span class="app-size">4.89MB</span></div>
@@ -1257,7 +1403,7 @@
             <img src="https://via.placeholder.com/50" alt="steam" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/HLAhisuX" style="color: black; text-decoration: none;">steam</a>
+                    <a href="https://share.feijipan.com/s/HLAhisuX" >steam</a>
                     </div>
                 <div class="app-category">游戏・平台</div>
                 <div class="rating">2.0 ★ <span class="app-size">47.18MB</span></div>
@@ -1268,7 +1414,7 @@
             <img src="https://via.placeholder.com/50" alt="via" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/mcAhiIML" style="color: black; text-decoration: none;">via</a>
+                    <a href="https://share.feijipan.com/s/mcAhiIML" >via</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.0 ★ <span class="app-size">2.78MB</span></div>
@@ -1279,7 +1425,7 @@
             <img src="https://via.placeholder.com/50" alt="opera" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/CSAhiKLc" style="color: black; text-decoration: none;">opera浏览器</a>
+                    <a href="https://share.feijipan.com/s/CSAhiKLc" >opera浏览器</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">3.0 ★ <span class="app-size">128MB</span></div>
@@ -1290,7 +1436,7 @@
             <img src="https://via.placeholder.com/50" alt="Shadowrocket" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/G9AhjI9L" style="color: black; text-decoration: none;">Shadowrocket</a>
+                    <a href="https://share.feijipan.com/s/G9AhjI9L" >Shadowrocket</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.0 ★ <span class="app-size">33.57MB</span></div>
@@ -1301,7 +1447,7 @@
             <img src="https://via.placeholder.com/50" alt="Clash" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/fLAhkDS5" style="color: black; text-decoration: none;">Clash</a>
+                    <a href="https://share.feijipan.com/s/fLAhkDS5" >Clash</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.0 ★ <span class="app-size">13.81MB</span></div>
@@ -1312,7 +1458,7 @@
             <img src="https://via.placeholder.com/50" alt="V2Ray" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/bRAhkOuX" style="color: black; text-decoration: none;">V2Ray</a>
+                    <a href="https://share.feijipan.com/s/bRAhkOuX" >V2Ray</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.0 ★ <span class="app-size">22.70MB</span></div>
@@ -1323,7 +1469,7 @@
             <img src="https://via.placeholder.com/50" alt="Hiddify" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/1mCnBCtL" style="color: black; text-decoration: none;">Hiddify</a>
+                    <a href="https://share.feijipan.com/s/1mCnBCtL" >Hiddify</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.0 ★ <span class="app-size">128MB</span></div>
@@ -1334,7 +1480,7 @@
             <img src="https://via.placeholder.com/50" alt="讯飞星火" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://xinghuo.xfyun.cn/" style="color: black; text-decoration: none;">讯飞星火</a>
+                    <a href="https://xinghuo.xfyun.cn/" >讯飞星火</a>
                     </div>
                 <div class="app-category">网站・AI</div>
                 <div class="rating">3.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1345,7 +1491,7 @@
             <img src="https://via.placeholder.com/50" alt="文心一言" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://yiyan.baidu.com/" style="color: black; text-decoration: none;">文心一言</a>
+                    <a href="https://yiyan.baidu.com/" >文心一言</a>
                     </div>
                 <div class="app-category">网站・AI</div>
                 <div class="rating">3.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1356,7 +1502,7 @@
             <img src="https://via.placeholder.com/50" alt="opera" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://tongyi.aliyun.com/" style="color: black; text-decoration: none;">通义千问</a>
+                    <a href="https://tongyi.aliyun.com/" >通义千问</a>
                     </div>
                 <div class="app-category">网站・AI</div>
                 <div class="rating">3.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1367,7 +1513,7 @@
             <img src="https://via.placeholder.com/50" alt="天工" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://www.tiangong.cn/" style="color: black; text-decoration: none;">天工</a>
+                    <a href="https://www.tiangong.cn/" >天工</a>
                     </div>
                 <div class="app-category">网站・AI</div>
                 <div class="rating">3.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1378,7 +1524,7 @@
             <img src="https://via.placeholder.com/50" alt="秘塔AI搜索" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://metaso.cn/" style="color: black; text-decoration: none;">秘塔搜索</a>
+                    <a href="https://metaso.cn/" >秘塔搜索</a>
                     </div>
                 <div class="app-category">网站・AI</div>
                 <div class="rating">3.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1389,7 +1535,7 @@
             <img src="https://via.placeholder.com/50" alt="Kimi" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://kimi.moonshot.cn/" style="color: black; text-decoration: none;">Kimi</a>
+                    <a href="https://kimi.moonshot.cn/" >Kimi</a>
                     </div>
                 <div class="app-category">网站・AI</div>
                 <div class="rating">3.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1400,7 +1546,7 @@
             <img src="https://via.placeholder.com/50" alt="智谱清言" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://chatglm.cn/?lang=zh" style="color: black; text-decoration: none;">智谱清言</a>
+                    <a href="https://chatglm.cn/?lang=zh" >智谱清言</a>
                     </div>
                 <div class="app-category">网站・AI</div>
                 <div class="rating">3.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1411,7 +1557,7 @@
             <img src="https://via.placeholder.com/50" alt="豆包" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://www.doubao.com/chat/" style="color: black; text-decoration: none;">豆包</a>
+                    <a href="https://www.doubao.com/chat/" >豆包</a>
                     </div>
                 <div class="app-category">网站・AI</div>
                 <div class="rating">3.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1422,7 +1568,7 @@
             <img src="https://via.placeholder.com/50" alt="无涯·问知" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://www.wuya-ai.com/" style="color: black; text-decoration: none;">无涯·问知</a>
+                    <a href="https://www.wuya-ai.com/" >无涯·问知</a>
                     </div>
                 <div class="app-category">网站・AI</div>
                 <div class="rating">3.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1433,7 +1579,7 @@
             <img src="https://via.placeholder.com/50" alt="美搭社区" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://modelscope.cn/home" style="color: black; text-decoration: none;">魔搭社区</a>
+                    <a href="https://modelscope.cn/home" >魔搭社区</a>
                     </div>
                 <div class="app-category">网站・大模型</div>
                 <div class="rating">3.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1444,7 +1590,7 @@
             <img src="https://via.placeholder.com/50" alt="腾讯混元大模型" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://hunyuan.tencent.com/" style="color: black; text-decoration: none;">腾讯混元大模型</a>
+                    <a href="https://hunyuan.tencent.com/" >腾讯混元大模型</a>
                     </div>
                 <div class="app-category">网站・AI</div>
                 <div class="rating">3.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1455,7 +1601,7 @@
             <img src="https://via.placeholder.com/50" alt="华为盘古" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://pangu.huaweicloud.com/" style="color: black; text-decoration: none;">华为盘古大模型</a>
+                    <a href="https://pangu.huaweicloud.com/" >华为盘古大模型</a>
                     </div>
                 <div class="app-category">网站・浏览</div>
                 <div class="rating">3.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1466,7 +1612,7 @@
             <img src="https://via.placeholder.com/50" alt="商汤日日新大模型" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://aistudy.baidu.com/" style="color: black; text-decoration: none;">商汤日日新大模型</a>
+                    <a href="https://aistudy.baidu.com/" >商汤日日新大模型</a>
                     </div>
                 <div class="app-category">网站・AI</div>
                 <div class="rating">3.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1478,7 +1624,7 @@
 犹太财团--贝莱德" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/uEBUfO0s" style="color: black; text-decoration: none;">世界上最牛的
+                    <a href="https://share.feijipan.com/s/uEBUfO0s" >世界上最牛的
 犹太财团--贝莱德</a>
                     </div>
                 <div class="app-category">视频・影片</div>
@@ -1490,7 +1636,7 @@
             <img src="https://via.placeholder.com/50" alt="犹太思想魔爪" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/mhBUh7BG" style="color: black; text-decoration: none;">犹太思想魔爪试图
+                    <a href="https://share.feijipan.com/s/mhBUh7BG" >犹太思想魔爪试图
 凿穿华夏文明的堡垒！</a>
                     </div>
                 <div class="app-category">视频・影片</div>
@@ -1502,7 +1648,7 @@
             <img src="https://via.placeholder.com/50" alt="以色列正试图" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/ggBUhvRD" style="color: black; text-decoration: none;">以色列正试图操纵
+                    <a href="https://share.feijipan.com/s/ggBUhvRD" >以色列正试图操纵
 我们的网络舆论</a>
                     </div>
                 <div class="app-category">视频・影片</div>
@@ -1514,7 +1660,7 @@
             <img src="https://via.placeholder.com/50" alt="网飞猫" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/bGAgjwXT" style="color: black; text-decoration: none;">网飞猫</a>
+                    <a href="https://share.feijipan.com/s/bGAgjwXT" >网飞猫</a>
                     </div>
                 <div class="app-category">影视・工具</div>
                 <div class="rating">2.1 ★ <span class="app-size">22.59MB</span></div>
@@ -1525,7 +1671,7 @@
             <img src="https://via.placeholder.com/50" alt="暗网的网站" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://files.catbox.moe/7uk1m5.zip" style="color: black; text-decoration: none;">285个暗网的网站</a>
+                    <a href="https://files.catbox.moe/7uk1m5.zip" >285个暗网的网站</a>
                     </div>
                 <div class="app-category">网站・浏览</div>
                 <div class="rating">3.0 ★ <span class="app-size">28.61KB</span></div>
@@ -1536,7 +1682,7 @@
             <img src="https://via.placeholder.com/50" alt="笔友阁新版" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/8eAKYyBS" style="color: black; text-decoration: none;">笔友阁新版</a>
+                    <a href="https://share.feijipan.com/s/8eAKYyBS" >笔友阁新版</a>
                     </div>
                 <div class="app-category">实用・小说</div>
                 <div class="rating">2.0 ★ <span class="app-size">27.37MB</span></div>
@@ -1547,7 +1693,7 @@
             <img src="https://via.placeholder.com/50" alt="笔趣阁旧版" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/paAlQtth" style="color: black; text-decoration: none;">笔趣阁旧版</a>
+                    <a href="https://share.feijipan.com/s/paAlQtth" >笔趣阁旧版</a>
                     </div>
                 <div class="app-category">实用・小说</div>
                 <div class="rating">2.0 ★ <span class="app-size">22.45MB</span></div>
@@ -1558,7 +1704,7 @@
             <img src="https://via.placeholder.com/50" alt="追书神器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/zNAl30RB" style="color: black; text-decoration: none;">追书神器</a>
+                    <a href="https://share.feijipan.com/s/zNAl30RB" >追书神器</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.0 ★ <span class="app-size">46.95MB</span></div>
@@ -1569,7 +1715,7 @@
             <img src="https://via.placeholder.com/50" alt="番薯小说" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/hHAjZOUQ" style="color: black; text-decoration: none;">番薯小说</a>
+                    <a href="https://share.feijipan.com/s/hHAjZOUQ" >番薯小说</a>
                     </div>
                 <div class="app-category">实用・小说</div>
                 <div class="rating">2.0 ★ <span class="app-size">43.70MB</span></div>
@@ -1580,7 +1726,7 @@
             <img src="https://via.placeholder.com/50" alt="红桃小说" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/JIAjZX2t" style="color: black; text-decoration: none;">红桃小说</a>
+                    <a href="https://share.feijipan.com/s/JIAjZX2t" >红桃小说</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">2.0 ★ <span class="app-size">46.98MB</span></div>
@@ -1591,7 +1737,7 @@
             <img src="https://via.placeholder.com/50" alt="51吃瓜" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/WCCBEweg" style="color: black; text-decoration: none;">51吃瓜</a>
+                    <a href="https://share.feijipan.com/s/WCCBEweg" >51吃瓜</a>
                     </div>
                 <div class="app-category">实用・影片</div>
                 <div class="rating">2.0 ★ <span class="app-size">30.45MB</span></div>
@@ -1602,7 +1748,7 @@
             <img src="https://via.placeholder.com/50" alt="尾巴视频" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/LdCBEyBT" style="color: black; text-decoration: none;">尾巴视频</a>
+                    <a href="https://share.feijipan.com/s/LdCBEyBT" >尾巴视频</a>
                     </div>
                 <div class="app-category">实用・影片</div>
                 <div class="rating">3.0 ★ <span class="app-size">13.07MB</span></div>
@@ -1613,7 +1759,7 @@
             <img src="https://via.placeholder.com/50" alt="opera" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/XuCE26l2" style="color: black; text-decoration: none;">十八摸</a>
+                    <a href="https://share.feijipan.com/s/XuCE26l2" >十八摸</a>
                     </div>
                 <div class="app-category">实用・影片</div>
                 <div class="rating">2.0 ★ <span class="app-size">17.77MB</span></div>
@@ -1624,7 +1770,7 @@
             <img src="https://via.placeholder.com/50" alt="Soulv" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/ZnCE2v3y" style="color: black; text-decoration: none;">Soulv</a>
+                    <a href="https://share.feijipan.com/s/ZnCE2v3y" >Soulv</a>
                     </div>
                 <div class="app-category">实用・影片</div>
                 <div class="rating">2.0 ★ <span class="app-size">28.19MB</span></div>
@@ -1635,7 +1781,7 @@
             <img src="https://via.placeholder.com/50" alt="微密猫" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/xMCE2fYl" style="color: black; text-decoration: none;">微密猫</a>
+                    <a href="https://share.feijipan.com/s/xMCE2fYl" >微密猫</a>
                     </div>
                 <div class="app-category">实用・影片</div>
                 <div class="rating">2.0 ★ <span class="app-size">15.63MB</span></div>
@@ -1646,7 +1792,7 @@
             <img src="https://via.placeholder.com/50" alt="vidVIDEOS" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/NwCE2hjH" style="color: black; text-decoration: none;">VIDEOS</a>
+                    <a href="https://share.feijipan.com/s/NwCE2hjH" >VIDEOS</a>
                     </div>
                 <div class="app-category">实用・影片</div>
                 <div class="rating">2.0 ★ <span class="app-size">29.22MB</span></div>
@@ -1657,7 +1803,7 @@
             <img src="https://via.placeholder.com/50" alt="百度网盘" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://pan.baidu.com/" style="color: black; text-decoration: none;">百度网盘</a>
+                    <a href="https://pan.baidu.com/" >百度网盘</a>
                     </div>
                 <div class="app-category">网盘・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1668,7 +1814,7 @@
             <img src="https://via.placeholder.com/50" alt="阿里网盘" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://www.alipan.com/" style="color: black; text-decoration: none;">阿里网盘</a>
+                    <a href="https://www.alipan.com/" >阿里网盘</a>
                     </div>
                 <div class="app-category">网盘・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1679,7 +1825,7 @@
             <img src="https://via.placeholder.com/50" alt="115" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://m.115.com/" style="color: black; text-decoration: none;">115</a>
+                    <a href="https://m.115.com/" >115</a>
                     </div>
                 <div class="app-category">网盘・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1690,7 +1836,7 @@
             <img src="https://via.placeholder.com/50" alt="蓝奏云" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="http://lanzou.com/" style="color: black; text-decoration: none;">蓝奏云</a>
+                    <a href="http://lanzou.com/" >蓝奏云</a>
                     </div>
                 <div class="app-category">网盘・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1701,7 +1847,7 @@
             <img src="https://via.placeholder.com/50" alt="中国移动云盘" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://yun.139.com/" style="color: black; text-decoration: none;">中国移动云盘</a>
+                    <a href="https://yun.139.com/" >中国移动云盘</a>
                     </div>
                 <div class="app-category">网盘・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1712,7 +1858,7 @@
             <img src="https://via.placeholder.com/50" alt="123云盘" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://www.123pan.com/" style="color: black; text-decoration: none;">123云盘</a>
+                    <a href="https://www.123pan.com/" >123云盘</a>
                     </div>
                 <div class="app-category">网盘・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1723,7 +1869,7 @@
             <img src="https://via.placeholder.com/50" alt="文叔叔" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://www.wenshushu.cn/" style="color: black; text-decoration: none;">文叔叔</a>
+                    <a href="https://www.wenshushu.cn/" >文叔叔</a>
                     </div>
                 <div class="app-category">网盘・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1734,7 +1880,7 @@
             <img src="https://via.placeholder.com/50" alt="musetransfer" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://musetransfer.com/" style="color: black; text-decoration: none;">musetransfer</a>
+                    <a href="https://musetransfer.com/" >musetransfer</a>
                     </div>
                 <div class="app-category">网盘・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1745,7 +1891,7 @@
             <img src="https://via.placeholder.com/50" alt="wetransfer" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://wetransfer.com/upload" style="color: black; text-decoration: none;">wetransfer</a>
+                    <a href="https://wetransfer.com/upload" >wetransfer</a>
                     </div>
                 <div class="app-category">2G文件临时中转</div>
                 <div class="rating">1.0 ★ <span class="app-size">0.0MB</span></div>
@@ -1756,7 +1902,7 @@
             <img src="https://via.placeholder.com/50" alt="gofile" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/CSAhiKLc" style="color: black; text-decoration: none;">gofile</a>
+                    <a href="https://share.feijipan.com/s/CSAhiKLc" >gofile</a>
                     </div>
                 <div class="app-category">单文件不限大小
 <p>如果有一个人访问
@@ -1772,7 +1918,7 @@
             <img src="https://via.placeholder.com/50" alt="云中转" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://www.yunzhongzhuan.com/" style="color: black; text-decoration: none;">云中转</a>
+                    <a href="https://www.yunzhongzhuan.com/" >云中转</a>
                     </div>
                 <div class="app-category">不限流量/容量/速度
 <p>单文件支持30G
@@ -1786,7 +1932,7 @@
             <img src="https://via.placeholder.com/50" alt="小飞机网盘" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://www.feijipan.com/" style="color: black; text-decoration: none;">小飞机网盘</a>
+                    <a href="https://www.feijipan.com/" >小飞机网盘</a>
                     </div>
                 <div class="app-category">免费2T不限速
 <p>500MB的文件
@@ -1800,7 +1946,7 @@
             <img src="https://via.placeholder.com/50" alt="Se" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/G8DSFcNR" style="color: black; text-decoration: none;">Se</a>
+                    <a href="https://share.feijipan.com/s/G8DSFcNR" >Se</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.1 ★ <span class="app-size">155MB</span></div>
@@ -1811,7 +1957,7 @@
             <img src="https://via.placeholder.com/50" alt="烧脑眼神王" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/4cAgiJaq" style="color: black; text-decoration: none;">烧脑眼神王</a>
+                    <a href="https://share.feijipan.com/s/4cAgiJaq" >烧脑眼神王</a>
                     </div>
                 <div class="app-category">游戏・休闲</div>
                 <div class="rating">1.0 ★ <span class="app-size">183MB</span></div>
@@ -1822,7 +1968,7 @@
             <img src="https://via.placeholder.com/50" alt="单机小汽车游戏" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/h5Agkn7E" style="color: black; text-decoration: none;">单机小汽车游戏</a>
+                    <a href="https://share.feijipan.com/s/h5Agkn7E" >单机小汽车游戏</a>
                     </div>
                 <div class="app-category">游戏・休闲</div>
                 <div class="rating">1.0 ★ <span class="app-size">112MB</span></div>
@@ -1833,7 +1979,7 @@
             <img src="https://via.placeholder.com/50" alt="钩鱼" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/IuAjh5Qd" style="color: black; text-decoration: none;">钩鱼</a>
+                    <a href="https://share.feijipan.com/s/IuAjh5Qd" >钩鱼</a>
                     </div>
                 <div class="app-category">游戏・休闲</div>
                 <div class="rating">1.0 ★ <span class="app-size">185MB</span></div>
@@ -1844,7 +1990,7 @@
             <img src="https://via.placeholder.com/50" alt="植物大战僵尸单机版" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://a.download.yunzhongzhuan.com/download/2853694/F2sj243G/base.apk?t=1714814120&o=yunzhongzhuan.com" style="color: black; text-decoration: none;">植物大战僵尸单机版</a>
+                    <a href="https://a.download.yunzhongzhuan.com/download/2853694/F2sj243G/base.apk?t=1714814120&o=yunzhongzhuan.com" >植物大战僵尸单机版</a>
                     </div>
                 <div class="app-category">游戏・休闲</div>
                 <div class="rating">1.0 ★ <span class="app-size">87.78MB</span></div>
@@ -1855,7 +2001,7 @@
             <img src="https://via.placeholder.com/50" alt="绯月" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://a.download.yunzhongzhuan.com/download/2856541/biqK5DhF/%E7%BB%AF%E6%9C%88.apk?t=1714989985&o=yunzhongzhuan.com" style="color: black; text-decoration: none;">绯月</a>
+                    <a href="https://a.download.yunzhongzhuan.com/download/2856541/biqK5DhF/%E7%BB%AF%E6%9C%88.apk?t=1714989985&o=yunzhongzhuan.com" >绯月</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.0 ★ <span class="app-size">888MB</span></div>
@@ -1866,7 +2012,7 @@
             <img src="https://via.placeholder.com/50" alt="部落冲突" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/vJAqQLbY" style="color: black; text-decoration: none;">部落冲突</a>
+                    <a href="https://share.feijipan.com/s/vJAqQLbY" >部落冲突</a>
                     </div>
                 <div class="app-category">游戏・休闲</div>
                 <div class="rating">1.1 ★ <span class="app-size">1.41MB</span></div>
@@ -1877,7 +2023,7 @@
             <img src="https://via.placeholder.com/50" alt="单机自行车挑战" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/uhDScylm" style="color: black; text-decoration: none;">单机自行车挑战</a>
+                    <a href="https://share.feijipan.com/s/uhDScylm" >单机自行车挑战</a>
                     </div>
                 <div class="app-category">游戏・休闲</div>
                 <div class="rating">1.0 ★ <span class="app-size">778MB</span></div>
@@ -1888,7 +2034,7 @@
             <img src="https://via.placeholder.com/50" alt="永恒世界" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/9SDScnSy" style="color: black; text-decoration: none;">永恒世界</a>
+                    <a href="https://share.feijipan.com/s/9SDScnSy" >永恒世界</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.0 ★ <span class="app-size">2.03GB</span></div>
@@ -1899,7 +2045,7 @@
             <img src="https://via.placeholder.com/50" alt="女神的最佳交易" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/qBDScqzT" style="color: black; text-decoration: none;">女神的最佳交易</a>
+                    <a href="https://share.feijipan.com/s/qBDScqzT" >女神的最佳交易</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.0 ★ <span class="app-size">1.77GB</span></div>
@@ -1910,7 +2056,7 @@
             <img src="https://via.placeholder.com/50" alt="万华镜1" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/FNDScJAF" style="color: black; text-decoration: none;">万华镜1</a>
+                    <a href="https://share.feijipan.com/s/FNDScJAF" >万华镜1</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.1 ★ <span class="app-size">1.57GB</span></div>
@@ -1921,7 +2067,7 @@
             <img src="https://via.placeholder.com/50" alt="万华镜2.5" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/cHDScRhn" style="color: black; text-decoration: none;">万华镜2.5</a>
+                    <a href="https://share.feijipan.com/s/cHDScRhn" >万华镜2.5</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.0 ★ <span class="app-size">718MB</span></div>
@@ -1932,7 +2078,7 @@
             <img src="https://via.placeholder.com/50" alt="万华镜2" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/NzDSdEAC" style="color: black; text-decoration: none;">万华镜2</a>
+                    <a href="https://share.feijipan.com/s/NzDSdEAC" >万华镜2</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.0 ★ <span class="app-size">1.69GB</span></div>
@@ -1943,7 +2089,7 @@
             <img src="https://via.placeholder.com/50" alt="万华镜3" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/v7DSd126" style="color: black; text-decoration: none;">万华镜3</a>
+                    <a href="https://share.feijipan.com/s/v7DSd126" >万华镜3</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.0 ★ <span class="app-size">1.89GB</span></div>
@@ -1954,7 +2100,7 @@
             <img src="https://via.placeholder.com/50" alt="万华镜4" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/vNDSd5F0" style="color: black; text-decoration: none;">万华镜4</a>
+                    <a href="https://share.feijipan.com/s/vNDSd5F0" >万华镜4</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.0 ★ <span class="app-size">2.24GB</span></div>
@@ -1965,7 +2111,7 @@
             <img src="https://via.placeholder.com/50" alt="万华镜5" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/sRDSdnUm" style="color: black; text-decoration: none;">万华镜5</a>
+                    <a href="https://share.feijipan.com/s/sRDSdnUm" >万华镜5</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.0 ★ <span class="app-size">3.11GB</span></div>
@@ -1976,7 +2122,7 @@
             <img src="https://via.placeholder.com/50" alt="生活" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/4tAtpvyO" style="color: black; text-decoration: none;">生活</a>
+                    <a href="https://share.feijipan.com/s/4tAtpvyO" >生活</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.0 ★ <span class="app-size">344MB</span></div>
@@ -1987,7 +2133,7 @@
             <img src="https://via.placeholder.com/50" alt="恶魔" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/jkAtpyun" style="color: black; text-decoration: none;">恶魔</a>
+                    <a href="https://share.feijipan.com/s/jkAtpyun" >恶魔</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.0 ★ <span class="app-size">374MB</span></div>
@@ -1998,7 +2144,7 @@
             <img src="https://via.placeholder.com/50" alt="淫荡乘客" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/IbDSeE0r" style="color: black; text-decoration: none;">淫荡乘客</a>
+                    <a href="https://share.feijipan.com/s/IbDSeE0r" >淫荡乘客</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.0 ★ <span class="app-size">504MB</span></div>
@@ -2009,7 +2155,7 @@
             <img src="https://via.placeholder.com/50" alt="新天域" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/BZDSeZT1" style="color: black; text-decoration: none;">新天域</a>
+                    <a href="https://share.feijipan.com/s/BZDSeZT1" >新天域</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.0 ★ <span class="app-size">1.43GB</span></div>
@@ -2020,7 +2166,7 @@
             <img src="https://via.placeholder.com/50" alt="莎拉罗斯" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/03DS5AZj" style="color: black; text-decoration: none;">莎拉罗斯的生存</a>
+                    <a href="https://share.feijipan.com/s/03DS5AZj" >莎拉罗斯的生存</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.0 ★ <span class="app-size">1.24GB</span></div>
@@ -2031,7 +2177,7 @@
             <img src="https://via.placeholder.com/50" alt="NAA" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/snDS5PKL" style="color: black; text-decoration: none;">NAA</a>
+                    <a href="https://share.feijipan.com/s/snDS5PKL" >NAA</a>
                     </div>
                 <div class="app-category">游戏・攻略</div>
                 <div class="rating">1.0 ★ <span class="app-size">2.98GB</span></div>
@@ -2042,7 +2188,7 @@
             <img src="https://via.placeholder.com/50" alt="动漫之家" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://m.idmzj.com/" style="color: black; text-decoration: none;">动漫之家</a>
+                    <a href="https://m.idmzj.com/" >动漫之家</a>
                     </div>
                 <div class="app-category">网站・漫画</div>
                 <div class="rating">1.0 ★ <span class="app-size">0.0</span></div>
@@ -2053,7 +2199,7 @@
             <img src="https://via.placeholder.com/50" alt="acg动漫" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://www.acgvod.com/" style="color: black; text-decoration: none;">acg动漫</a>
+                    <a href="https://www.acgvod.com/" >acg动漫</a>
                     </div>
                 <div class="app-category">网站・动漫</div>
                 <div class="rating">1.0 ★ <span class="app-size">0.0</span></div>
@@ -2064,7 +2210,7 @@
             <img src="https://via.placeholder.com/50" alt="AGE动漫" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="http://acgdm6.com/" style="color: black; text-decoration: none;">AGE动漫</a>
+                    <a href="http://acgdm6.com/" >AGE动漫</a>
                     </div>
                 <div class="app-category">网站・动漫</div>
                 <div class="rating">1.0 ★ <span class="app-size">0.0</span></div>
@@ -2075,7 +2221,7 @@
             <img src="https://via.placeholder.com/50" alt="AGE.TV" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://m.agedm.org/" style="color: black; text-decoration: none;">AGE.TV</a>
+                    <a href="https://m.agedm.org/" >AGE.TV</a>
                     </div>
                 <div class="app-category">网站・动漫</div>
                 <div class="rating">1.0 ★ <span class="app-size">0.0</span></div>
@@ -2086,7 +2232,7 @@
             <img src="https://via.placeholder.com/50" alt="拷贝漫画" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/znCDIJ0Y" style="color: black; text-decoration: none;">拷贝漫画</a>
+                    <a href="https://share.feijipan.com/s/znCDIJ0Y" >拷贝漫画</a>
                     </div>
                 <div class="app-category">实用・漫画</div>
                 <div class="rating">1.0 ★ <span class="app-size">3.83MB</span></div>
@@ -2097,7 +2243,7 @@
             <img src="https://via.placeholder.com/50" alt="漫画阅读器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/pfCDJZ2C" style="color: black; text-decoration: none;">漫画阅读器</a>
+                    <a href="https://share.feijipan.com/s/pfCDJZ2C" >漫画阅读器</a>
                     </div>
                 <div class="app-category">实用・漫画</div>
                 <div class="rating">1.0 ★ <span class="app-size">9.99MB</span></div>
@@ -2108,7 +2254,7 @@
             <img src="https://via.placeholder.com/50" alt="Every Proxy" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/urDS64Ri" style="color: black; text-decoration: none;">Every Proxy</a>
+                    <a href="https://share.feijipan.com/s/urDS64Ri" >Every Proxy</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">9.04MB</span></div>
@@ -2119,7 +2265,7 @@
             <img src="https://via.placeholder.com/50" alt="PSP模拟器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/L4Ahlyrz" style="color: black; text-decoration: none;">PSP模拟器</a>
+                    <a href="https://share.feijipan.com/s/L4Ahlyrz" >PSP模拟器</a>
                     </div>
                 <div class="app-category">实用・模拟器</div>
                 <div class="rating">1.0 ★ <span class="app-size">36.04MB</span></div>
@@ -2130,7 +2276,7 @@
             <img src="https://via.placeholder.com/50" alt="RAR解压缩" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/8iAhlK2A" style="color: black; text-decoration: none;">RAR解压缩</a>
+                    <a href="https://share.feijipan.com/s/8iAhlK2A" >RAR解压缩</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">4.12MB</span></div>
@@ -2141,7 +2287,7 @@
             <img src="https://via.placeholder.com/50" alt="小鸡模拟器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/ZJAhmHj6" style="color: black; text-decoration: none;">小鸡模拟器</a>
+                    <a href="https://share.feijipan.com/s/ZJAhmHj6" >小鸡模拟器</a>
                     </div>
                 <div class="app-category">实用・模拟器</div>
                 <div class="rating">1.0 ★ <span class="app-size">85.14MB</span></div>
@@ -2152,7 +2298,7 @@
             <img src="https://via.placeholder.com/50" alt="snaptube" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/zPAhmWHk" style="color: black; text-decoration: none;">snaptube</a>
+                    <a href="https://share.feijipan.com/s/zPAhmWHk" >snaptube</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">25.88MB</span></div>
@@ -2163,7 +2309,7 @@
             <img src="https://via.placeholder.com/50" alt="reproductor" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/u8Ahmydi" style="color: black; text-decoration: none;">reproductor</a>
+                    <a href="https://share.feijipan.com/s/u8Ahmydi" >reproductor</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">129MB</span></div>
@@ -2174,7 +2320,7 @@
             <img src="https://via.placeholder.com/50" alt="termux" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/VUAjCqLL" style="color: black; text-decoration: none;">termux</a>
+                    <a href="https://share.feijipan.com/s/VUAjCqLL" >termux</a>
                     </div>
                 <div class="app-category">系统・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">107MB</span></div>
@@ -2185,7 +2331,7 @@
             <img src="https://via.placeholder.com/50" alt="家常菜" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/ODAj11aa" style="color: black; text-decoration: none;">家常菜</a>
+                    <a href="https://share.feijipan.com/s/ODAj11aa" >家常菜</a>
                     </div>
                 <div class="app-category">游戏・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">5.23MB</span></div>
@@ -2196,7 +2342,7 @@
             <img src="https://via.placeholder.com/50" alt="增强图片" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/szAjuG8B" style="color: black; text-decoration: none;">增强图片分辨率</a>
+                    <a href="https://share.feijipan.com/s/szAjuG8B" >增强图片分辨率</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">162MB</span></div>
@@ -2207,7 +2353,7 @@
             <img src="https://via.placeholder.com/50" alt="万兴喵影" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/KcAjh3Bt" style="color: black; text-decoration: none;">万兴喵影</a>
+                    <a href="https://share.feijipan.com/s/KcAjh3Bt" >万兴喵影</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">139MB</span></div>
@@ -2218,7 +2364,7 @@
             <img src="https://via.placeholder.com/50" alt="热舞健身" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/jaAk4eV6" style="color: black; text-decoration: none;">热舞健身</a>
+                    <a href="https://share.feijipan.com/s/jaAk4eV6" >热舞健身</a>
                     </div>
                 <div class="app-category">实用・运动</div>
                 <div class="rating">1.0 ★ <span class="app-size">40.93MB</span></div>
@@ -2229,7 +2375,7 @@
             <img src="https://via.placeholder.com/50" alt="人体位图解" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/0iAk4mtb" style="color: black; text-decoration: none;">人体位图解</a>
+                    <a href="https://share.feijipan.com/s/0iAk4mtb" >人体位图解</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">15.42MB</span></div>
@@ -2240,7 +2386,7 @@
             <img src="https://via.placeholder.com/50" alt="视频压缩" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/gaAk6HsM" style="color: black; text-decoration: none;">视频压缩</a>
+                    <a href="https://share.feijipan.com/s/gaAk6HsM" >视频压缩</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">13.14MB</span></div>
@@ -2251,7 +2397,7 @@
             <img src="https://via.placeholder.com/50" alt="小红书" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/BuAkm3EC" style="color: black; text-decoration: none;">小红书</a>
+                    <a href="https://share.feijipan.com/s/BuAkm3EC" >小红书</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">178MB</span></div>
@@ -2262,7 +2408,7 @@
             <img src="https://via.placeholder.com/50" alt="迅雷" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/HHDKbsut" style="color: black; text-decoration: none;">迅雷</a>
+                    <a href="https://share.feijipan.com/s/HHDKbsut" >迅雷</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">151MB</span></div>
@@ -2273,7 +2419,7 @@
             <img src="https://via.placeholder.com/50" alt="知乎国际版" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/KwAl0S6u" style="color: black; text-decoration: none;">知乎国际版</a>
+                    <a href="https://share.feijipan.com/s/KwAl0S6u" >知乎国际版</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">93.34MB</span></div>
@@ -2284,7 +2430,7 @@
             <img src="https://via.placeholder.com/50" alt="中医辨证开方" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/2RAl2LNq" style="color: black; text-decoration: none;">中医辨证开方</a>
+                    <a href="https://share.feijipan.com/s/2RAl2LNq" >中医辨证开方</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">16.70MB</span></div>
@@ -2295,7 +2441,7 @@
             <img src="https://via.placeholder.com/50" alt="布丁扫描" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/lYAqQaCU" style="color: black; text-decoration: none;">布丁扫描</a>
+                    <a href="https://share.feijipan.com/s/lYAqQaCU" >布丁扫描</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">86.02MB</span></div>
@@ -2306,7 +2452,7 @@
             <img src="https://via.placeholder.com/50" alt="ONS模拟器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/xmAtfl77" style="color: black; text-decoration: none;">ONS模拟器</a>
+                    <a href="https://share.feijipan.com/s/xmAtfl77" >ONS模拟器</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">23.65MB</span></div>
@@ -2317,7 +2463,7 @@
             <img src="https://via.placeholder.com/50" alt="GBA模拟器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/BSALCZMW" style="color: black; text-decoration: none;">GBA模拟器</a>
+                    <a href="https://share.feijipan.com/s/BSALCZMW" >GBA模拟器</a>
                     </div>
                 <div class="app-category">游戏・模拟器</div>
                 <div class="rating">1.0 ★ <span class="app-size">1.22MB</span></div>
@@ -2328,7 +2474,7 @@
             <img src="https://via.placeholder.com/50" alt="凯格尔" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://a.download.yunzhongzhuan.com/download/2853027/9HIWHPXP/%E5%87%AF%E6%A0%BC%E5%B0%94_1.013.apk?t=1716803381&o=yunzhongzhuan.com" style="color: black; text-decoration: none;">凯格尔</a>
+                    <a href="https://a.download.yunzhongzhuan.com/download/2853027/9HIWHPXP/%E5%87%AF%E6%A0%BC%E5%B0%94_1.013.apk?t=1716803381&o=yunzhongzhuan.com" >凯格尔</a>
                     </div>
                 <div class="app-category">实用・运动</div>
                 <div class="rating">1.0 ★ <span class="app-size">8.35MB</span></div>
@@ -2339,7 +2485,7 @@
             <img src="https://via.placeholder.com/50" alt="拉伸运动" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://a.download.yunzhongzhuan.com/download/2853028/btxjJEH3/%E6%8B%89%E4%BC%B8%E8%BF%90%E5%8A%A8_2.0.10.apk?t=1716803518&o=yunzhongzhuan.com" style="color: black; text-decoration: none;">拉伸运动</a>
+                    <a href="https://a.download.yunzhongzhuan.com/download/2853028/btxjJEH3/%E6%8B%89%E4%BC%B8%E8%BF%90%E5%8A%A8_2.0.10.apk?t=1716803518&o=yunzhongzhuan.com" >拉伸运动</a>
                     </div>
                 <div class="app-category">实用・运动</div>
                 <div class="rating">1.0 ★ <span class="app-size">12.88MB</span></div>
@@ -2350,7 +2496,7 @@
             <img src="https://via.placeholder.com/50" alt="女性健身" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://a.download.yunzhongzhuan.com/download/2853029/rJxo8cWQ/%E5%A5%B3%E6%80%A7%E5%81%A5%E8%BA%AB-%E5%A5%B3%E6%80%A7%E9%94%BB%E7%82%BC_1.5.6.apk?t=1716803569&o=yunzhongzhuan.com" style="color: black; text-decoration: none;">女性健身</a>
+                    <a href="https://a.download.yunzhongzhuan.com/download/2853029/rJxo8cWQ/%E5%A5%B3%E6%80%A7%E5%81%A5%E8%BA%AB-%E5%A5%B3%E6%80%A7%E9%94%BB%E7%82%BC_1.5.6.apk?t=1716803569&o=yunzhongzhuan.com" >女性健身</a>
                     </div>
                 <div class="app-category">实用・运动</div>
                 <div class="rating">1.0 ★ <span class="app-size">17.67MB</span></div>
@@ -2361,7 +2507,7 @@
             <img src="https://via.placeholder.com/50" alt="男性减肥健身" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://a.download.yunzhongzhuan.com/download/2853030/L48G02KJ/%E7%94%B7%E6%80%A7%E5%87%8F%E8%82%A5%E5%81%A5%E8%BA%AB%E8%BD%AF%E4%BB%B6_2.3.2.apk?t=1716803641&o=yunzhongzhuan.com" style="color: black; text-decoration: none;">男性减肥健身</a>
+                    <a href="https://a.download.yunzhongzhuan.com/download/2853030/L48G02KJ/%E7%94%B7%E6%80%A7%E5%87%8F%E8%82%A5%E5%81%A5%E8%BA%AB%E8%BD%AF%E4%BB%B6_2.3.2.apk?t=1716803641&o=yunzhongzhuan.com" >男性减肥健身</a>
                     </div>
                 <div class="app-category">实用・运动</div>
                 <div class="rating">1.0 ★ <span class="app-size">15.69MB</span></div>
@@ -2372,7 +2518,7 @@
             <img src="https://via.placeholder.com/50" alt="瑜伽" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://a.download.yunzhongzhuan.com/download/2853031/3zC5uW3u/%E7%91%9C%E4%BC%BD_1.4.9.apk?t=1716803698&o=yunzhongzhuan.com" style="color: black; text-decoration: none;">瑜伽</a>
+                    <a href="https://a.download.yunzhongzhuan.com/download/2853031/3zC5uW3u/%E7%91%9C%E4%BC%BD_1.4.9.apk?t=1716803698&o=yunzhongzhuan.com" >瑜伽</a>
                     </div>
                 <div class="app-category">实用・运动</div>
                 <div class="rating">1.0 ★ <span class="app-size">19.43MB</span></div>
@@ -2383,7 +2529,7 @@
             <img src="https://via.placeholder.com/50" alt="跑步记录" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://a.download.yunzhongzhuan.com/download/2853032/dUVGPo8f/%E8%B7%91%E6%AD%A5%E8%AE%B0%E5%BD%95_1.5.0.apk?t=1716803888&o=yunzhongzhuan.com" style="color: black; text-decoration: none;">跑步记录</a>
+                    <a href="https://a.download.yunzhongzhuan.com/download/2853032/dUVGPo8f/%E8%B7%91%E6%AD%A5%E8%AE%B0%E5%BD%95_1.5.0.apk?t=1716803888&o=yunzhongzhuan.com" >跑步记录</a>
                     </div>
                 <div class="app-category">实用・运动</div>
                 <div class="rating">1.0 ★ <span class="app-size">10.31MB</span></div>
@@ -2394,7 +2540,7 @@
             <img src="https://via.placeholder.com/50" alt="搜图软件" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/tZAIjmFS" style="color: black; text-decoration: none;">搜图软件</a>
+                    <a href="https://share.feijipan.com/s/tZAIjmFS" >搜图软件</a>
                     </div>
                 <div class="app-category">实用・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">7.89MB</span></div>
@@ -2405,110 +2551,177 @@
             <img src="https://via.placeholder.com/50" alt="吉里吉里模拟器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://share.feijipan.com/s/6dAKB8bh" style="color: black; text-decoration: none;">吉里吉里模拟器</a>
+                    <a href="https://share.feijipan.com/s/6dAKB8bh" >吉里吉里模拟器</a>
                     </div>
                 <div class="app-category">实用・模拟器</div>
                 <div class="rating">1.0 ★ <span class="app-size">150MB</span></div>
             </div>
-        </div>
-        
-        <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="视频下载器" class="app-icon">
-            <div class="app-info">
-                <div class="app-name">
-                    <a href="https://share.feijipan.com/s/QzAKAeCU" style="color: black; text-decoration: none;">视频下载器</a>
-                    </div>
-                <div class="app-category">实用・工具</div>
-                <div class="rating">1.0 ★ <span class="app-size">18.02MB</span></div>
-            </div>
-        </div>
+            </article>
+    </main>
 
-        <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="广告拦截" class="app-icon">
-            <div class="app-info">
-                <div class="app-name">
-                    <a href="https://share.feijipan.com/s/8hDAgCvQ" style="color: black; text-decoration: none;">Invizible_pro</a>
-                    </div>
-                <div class="app-category">实用・工具</div>
-                <div class="rating">1.0 ★ <span class="app-size">36.32MB</span></div>
-            </div>
-        </div>
-
-        <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="广告拦截" class="app-icon">
-            <div class="app-info">
-                <div class="app-name">
-                    <a href="https://share.feijipan.com/s/I5EFuEuQ" style="color: black; text-decoration: none;">AdGuard</a>
-                    </div>
-                <div class="app-category">实用・工具</div>
-                <div class="rating">1.0 ★ <span class="app-size">53.40MB</span></div>
-            </div>
-        </div>
-    </div>
-
-    <button class="floating-refresh" onclick="refreshPage()">〇</button>
-    <button class="floating-top" onclick="scrollToTop()">⇧</button>
+    <button class="floating-button floating-refresh" onclick="refreshPage()" aria-label="刷新页面">↻</button>
+<button class="floating-button floating-top" onclick="scrollToTop()" aria-label="返回顶部">↑</button>
 
     <script>
-        function performSearch() {
-            // 搜索功能实现
+        // 使用防抖优化搜索功能
+        function debounce(func, wait) {
+            let timeout;
+            return function (...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
         }
+
+        const performSearch = debounce(() => {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const appItems = document.querySelectorAll('.app-item');
+            
+            appItems.forEach(item => {
+                const appName = item.querySelector('.app-name').textContent.toLowerCase();
+                const appCategory = item.querySelector('.app-category').textContent.toLowerCase();
+                const isVisible = appName.includes(searchTerm) || appCategory.includes(searchTerm);
+                item.style.display = isVisible ? 'flex' : 'none';
+            });
+        }, 300);
 
         function toggleSidebar() {
-            var sidebar = document.getElementById('sidebar');
-            var sidebarOverlay = document.getElementById('sidebarOverlay');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            
             sidebar.classList.toggle('active');
             sidebarOverlay.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
-        }
-
-        document.getElementById('sidebarOverlay').addEventListener('click', toggleSidebar);
-
-        var searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('keyup', function(event) {
-            if (event.key === 'Enter') {
-                performSearch();
+            
+            // 添加键盘事件监听
+            if (sidebar.classList.contains('active')) {
+                document.addEventListener('keydown', handleEscKey);
+            } else {
+                document.removeEventListener('keydown', handleEscKey);
             }
-        });
-        </script>
-
-    <script>
-function performSearch() {
-    var searchInput = document.getElementById('searchInput');
-    var searchText = searchInput.value.toLowerCase();
-
-    // 获取所有的应用项目
-    var appItems = document.querySelectorAll('.app-item');
-
-    // 遍历每个应用项目,检查是否匹配搜索关键词
-    for (var i = 0; i < appItems.length; i++) {
-        var appName = appItems[i].querySelector('.app-name').textContent.toLowerCase();
-        var appCategory = appItems[i].querySelector('.app-category').textContent.toLowerCase();
-
-        if (appName.includes(searchText) || appCategory.includes(searchText)) {
-            appItems[i].classList.remove('hidden');
-        } else {
-            appItems[i].classList.add('hidden');
-        }
-    }
-}
-    </script>
-    
-        <script>
-        function refreshPage() {
-            location.reload();
         }
 
-        function scrollToTop() {
+        function handleEscKey(event) {
+            if (event.key === 'Escape') {
+                toggleSidebar();
+            }
+        }
+
+        // 优化滚动到顶部的功能
+        const scrollToTop = () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
-        }
+        };
 
-        window.addEventListener('DOMContentLoaded', function() {
-            var sidebar = document.getElementById('sidebar');
-            sidebar.style.height = window.innerHeight + 'px';
+        // 优化页面刷新功能
+        const refreshPage = () => {
+            window.location.reload();
+        };
+
+        // 添加搜索框回车事件监听
+        document.getElementById('searchInput').addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
         });
+
+        // 添加图片加载失败处理
+        document.querySelectorAll('.app-icon').forEach(img => {
+            img.onerror = function() {
+                this.src = 'placeholder.png'; // 设置默认图片
+                this.alt = '图片加载失败';
+            };
+        });
+
+        // 添加页面加载完成后的优化
+        document.addEventListener('DOMContentLoaded', () => {
+            // 预加载图片
+            const images = document.querySelectorAll('.app-icon');
+            images.forEach(img => {
+                const preloadLink = document.createElement('link');
+                preloadLink.rel = 'preload';
+                preloadLink.as = 'image';
+                preloadLink.href = img.src;
+                document.head.appendChild(preloadLink);
+            });
+        });
+        
+        function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const body = document.body;
+    
+    sidebar.classList.toggle('active');
+    
+    if (sidebar.classList.contains('active')) {
+        sidebarOverlay.style.display = 'block';
+        body.style.overflow = 'hidden'; // 防止背景滚动
+        
+        // 添加触摸滑动关闭支持
+        let startX = 0;
+        let currentX = 0;
+        
+        function handleTouchStart(e) {
+            startX = e.touches[0].clientX;
+        }
+        
+        function handleTouchMove(e) {
+            currentX = e.touches[0].clientX;
+            const diff = currentX - startX;
+            
+            if (diff < 0) {
+                sidebar.style.transform = `translateX(${diff}px)`;
+            }
+        }
+        
+        function handleTouchEnd() {
+            const diff = currentX - startX;
+            if (diff < -50) { // 如果滑动距离超过50px
+                toggleSidebar();
+            }
+            sidebar.style.transform = '';
+        }
+        
+        sidebar.addEventListener('touchstart', handleTouchStart);
+        sidebar.addEventListener('touchmove', handleTouchMove);
+        sidebar.addEventListener('touchend', handleTouchEnd);
+        
+    } else {
+        sidebarOverlay.style.display = 'none';
+        body.style.overflow = '';
+        
+        // 移除触摸事件监听
+        sidebar.removeEventListener('touchstart', handleTouchStart);
+        sidebar.removeEventListener('touchmove', handleTouchMove);
+        sidebar.removeEventListener('touchend', handleTouchEnd);
+    }
+}
+
+// 添加双击关闭功能
+document.getElementById('sidebar').addEventListener('dblclick', (e) => {
+    if (e.target.tagName !== 'A') { // 不是链接时才触发
+        toggleSidebar();
+    }
+});
+
+// 添加滑动手势支持
+let touchStartX = 0;
+document.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+});
+
+document.addEventListener('touchend', (e) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchEndX - touchStartX;
+    
+    // 从屏幕左边缘向右滑动打开菜单
+    if (diff > 50 && touchStartX < 30) {
+        const sidebar = document.getElementById('sidebar');
+        if (!sidebar.classList.contains('active')) {
+            toggleSidebar();
+        }
+    }
+});
     </script>
 </body>
 </html>

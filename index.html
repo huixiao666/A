@@ -12,19 +12,16 @@
             --shadow-color: rgba(0, 0, 0, 0.1);
             --text-color: #666;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background-color: var(--background-color);
             line-height: 1.6;
         }
-
         .header {
             position: sticky;
             top: 0;
@@ -36,7 +33,6 @@
             box-shadow: 0 2px 5px var(--shadow-color);
             z-index: 1000;
         }
-
         .search-bar {
             display: flex;
             gap: 0.5rem;
@@ -44,7 +40,6 @@
             max-width: 600px;
             margin: 0 auto;
         }
-
         .search-bar input {
             flex: 1;
             padding: 0.5rem;
@@ -52,7 +47,6 @@
             border-radius: 4px;
             font-size: 1rem;
         }
-
         .search-bar button {
             padding: 0.5rem 1rem;
             background-color: #007bff;
@@ -62,11 +56,9 @@
             cursor: pointer;
             transition: background-color 0.2s;
         }
-
         .search-bar button:hover {
             background-color: #0056b3;
         }
-
         .nav {
             display: flex;
             gap: 1rem;
@@ -75,7 +67,6 @@
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
-
         .nav a {
             color: var(--primary-color);
             text-decoration: none;
@@ -84,18 +75,15 @@
             border-radius: 4px;
             transition: background-color 0.2s;
         }
-
         .nav a:hover {
             background-color: #f0f0f0;
         }
-
         .app-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 1.5rem;
             padding: 1.5rem;
         }
-
         .app-item {
             display: flex;
             align-items: center;
@@ -104,12 +92,10 @@
             padding: 1rem;
             transition: transform 0.2s, box-shadow 0.2s;
         }
-
         .app-item:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px var(--shadow-color);
         }
-
         .app-icon {
             width: 64px;
             height: 64px;
@@ -117,28 +103,23 @@
             object-fit: cover;
             margin-right: 1rem;
         }
-
         .app-info {
             flex: 1;
         }
-
         .app-name {
             font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 0.25rem;
         }
-
         .app-name a {
             color: inherit;
             text-decoration: none;
         }
-
         .app-category {
             font-size: 0.9rem;
             color: var(--text-color);
             margin-bottom: 0.25rem;
         }
-
         .rating {
             font-size: 0.9rem;
             color: var(--text-color);
@@ -146,7 +127,6 @@
             align-items: center;
             gap: 0.5rem;
         }
-
         .floating-button {
             position: fixed;
             right: 1.5rem;
@@ -163,34 +143,27 @@
             justify-content: center;
             font-size: 1.2rem;
         }
-
         .floating-refresh {
             composes: floating-button;
             bottom: 5.5rem;
         }
-
         .floating-top {
             composes: floating-button;
             bottom: 15rem;
         }
-
         .floating-button:hover {
             background-color: #f0f0f0;
         }
-
-        
-
+        @media (max-width: 768px) {
             .app-icon {
                 width: 48px;
                 height: 48px;
             }
-
             .app-name {
                 font-size: 1rem;
             }
         }
-
-        /* 添加深色模式支持 */
+        /* 深色模式支持 */
         @media (prefers-color-scheme: dark) {
             :root {
                 --primary-color: #fff;
@@ -198,217 +171,173 @@
                 --shadow-color: rgba(0, 0, 0, 0.3);
                 --text-color: #999;
             }
-
             body {
                 color: var(--primary-color);
             }
-
             .header,
             .nav,
             .app-item {
                 background-color: #2d2d2d;
             }
-
             .search-bar input {
                 background-color: #333;
                 color: var(--primary-color);
                 border-color: #444;
             }
         }
-        
         .sidebar {
-    position: fixed;
-    top: 0;
-    left: -280px;
-    width: 280px;
-    height: 100vh;
-    background-color: #fff;
-    box-shadow: 2px 0 8px var(--shadow-color);
-    transition: transform 0.3s ease;
-    overflow-y: auto;
-    z-index: 1001;
-    padding: 1rem 0;
-}
-
-.sidebar.active {
-    transform: translateX(280px);
-}
-
-.sidebar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1rem 1rem;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 1rem;
-}
-
-.sidebar-close {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
-    color: var(--primary-color);
-}
-
-.sidebar-menu {
-    list-style: none;
-}
-
-.sidebar-menu li {
-    margin: 0.5rem 0;
-}
-
-.sidebar-menu a {
-    display: block;
-    padding: 0.75rem 1rem;
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: background-color 0.2s;
-}
-
-.sidebar-menu a:hover {
-    background-color: #f0f0f0;
-}
-
-.sidebar-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
-    z-index: 1000;
-    backdrop-filter: blur(2px);
-}
-
-/* 深色模式支持 */
-@media (prefers-color-scheme: dark) {
-    .sidebar {
-        background-color: #2d2d2d;
-    }
-    
-    .sidebar-header {
-        border-bottom-color: #444;
-    }
-    
-    .sidebar-menu a:hover {
-        background-color: #3d3d3d;
-    }
-}
-
-/* 触摸设备优化 */
-@media (hover: none) {
-    .sidebar-menu a:active {
-        background-color: #f0f0f0;
-    }
-}
-
-/* 修改侧滑菜单按钮样式 */
-.toggle-sidebar {
-    font-size: 2rem; /* 增大字体大小 */
-    padding: 0.8rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--primary-color);
-    width: 60px; /* 增加按钮宽度 */
-    height: 60px; /* 增加按钮高度 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: background-color 0.2s;
-}
-
-.toggle-sidebar:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-/* 修改浮动按钮样式 */
-.floating-button {
-    position: fixed;
-    right: 1.5rem;
-    width: 60px; /* 增加按钮宽度 */
-    height: 60px; /* 增加按钮高度 */
-    border-radius: 50%;
-    background-color: #fff;
-    border: none;
-    box-shadow: 0 2px 8px var(--shadow-color);
-    cursor: pointer;
-    transition: background-color 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem; /* 增大字体大小 */
-}
-
-/* 浮动按钮基础样式 */
-.floating-button {
-    position: fixed;
-    right: 1.5rem;
-    width: 60px; /* 增大按钮尺寸 */
-    height: 60px;
-    border-radius: 50%;
-    background-color: #fff;
-    border: none;
-    box-shadow: 0 2px 8px var(--shadow-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem; /* 增大图标尺寸 */
-    z-index: 999;
-}
-
-/* 刷新按钮位置 */
-.floating-refresh {
-    bottom: 6.5rem;
-}
-
-/* 返回顶部按钮位置 */
-.floating-top {
-    bottom: 1.5rem;
-}
-
-/* 按钮悬停效果 */
-.floating-button:hover {
-    background-color: #f0f0f0;
-    transform: scale(1.1);
-}
-
-/* 深色模式支持 */
-@media (prefers-color-scheme: dark) {
-    .floating-button {
-        background-color: #2d2d2d;
-        color: var(--primary-color);
-    }
-
-    .floating-button:hover {
-        background-color: #3d3d3d;
-    }
-}
-
-/* 移动设备适配 */
-@media (max-width: 768px) {
-    .floating-button {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
-        right: 1rem;
-    }
-
-    .floating-refresh {
-        bottom: 5.5rem;
-    }
-
-    .floating-top {
-        bottom: 1rem;
-    }
-}
+            position: fixed;
+            top: 0;
+            left: -280px;
+            width: 280px;
+            height: 100vh;
+            background-color: #fff;
+            box-shadow: 2px 0 8px var(--shadow-color);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+            z-index: 1001;
+            padding: 1rem 0;
+        }
+        .sidebar.active {
+            transform: translateX(280px);
+        }
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem 1rem;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 1rem;
+        }
+        .sidebar-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: var(--primary-color);
+        }
+        .sidebar-menu {
+            list-style: none;
+        }
+        .sidebar-menu li {
+            margin: 0.5rem 0;
+        }
+        .sidebar-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        .sidebar-menu a:hover {
+            background-color: #f0f0f0;
+        }
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1000;
+            backdrop-filter: blur(2px);
+        }
+        /* 深色模式支持 */
+        @media (prefers-color-scheme: dark) {
+            .sidebar {
+                background-color: #2d2d2d;
+            }
+            .sidebar-header {
+                border-bottom-color: #444;
+            }
+            .sidebar-menu a:hover {
+                background-color: #3d3d3d;
+            }
+        }
+        /* 触摸设备优化 */
+        @media (hover: none) {
+            .sidebar-menu a:active {
+                background-color: #f0f0f0;
+            }
+        }
+        /* 修改侧滑菜单按钮样式 */
+        .toggle-sidebar {
+            font-size: 2rem; /* 增大字体大小 */
+            padding: 0.8rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: var(--primary-color);
+            width: 60px; /* 增加按钮宽度 */
+            height: 60px; /* 增加按钮高度 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+        .toggle-sidebar:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        /* 修改浮动按钮样式 */
+        .floating-button {
+            position: fixed;
+            right: 1.5rem;
+            width: 60px; /* 增加按钮宽度 */
+            height: 60px; /* 增加按钮高度 */
+            border-radius: 50%;
+            background-color: #fff;
+            border: none;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem; /* 增大字体大小 */
+            z-index: 999;
+        }
+        /* 刷新按钮位置 */
+        .floating-refresh {
+            bottom: 6.5rem;
+        }
+        /* 返回顶部按钮位置 */
+        .floating-top {
+            bottom: 1.5rem;
+        }
+        /* 按钮悬停效果 */
+        .floating-button:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.1);
+        }
+        /* 深色模式支持 */
+        @media (prefers-color-scheme: dark) {
+            .floating-button {
+                background-color: #2d2d2d;
+                color: var(--primary-color);
+            }
+            .floating-button:hover {
+                background-color: #3d3d3d;
+            }
+        }
+        /* 移动设备适配 */
+        @media (max-width: 768px) {
+            .floating-button {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                right: 1rem;
+            }
+            .floating-refresh {
+                bottom: 5.5rem;
+            }
+            .floating-top {
+                bottom: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -419,7 +348,6 @@
             <button onclick="performSearch()">搜索</button>
         </div>
     </header>
-
     <nav class="nav">
         <a href="https://huixiao666.github.io/A/">首页</a>
         <a href="https://huixiao666.github.io/A1/">吃瓜</a>
@@ -429,10 +357,9 @@
         <a href="https://huixiao666.github.io/A6/">更新</a>
         <a href="https://huixiao666.github.io/A7/">视频</a>
     </nav>
-
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <div>搜索导航</h2>
+            <div>搜索导航</div>
             <button class="sidebar-close" onclick="toggleSidebar()" aria-label="关闭菜单">×</button>
         </div>
         <ul class="sidebar-menu">
@@ -447,102 +374,89 @@
             <li><a href="https://yandex.com/">俄罗斯</a></li>
             <li><a href="https://www.cilimiao.cn/">BT磁链</a></li>
             <li><a href="http://lemonuo.top/">磁力柠檬</a></li>
-            <li><a href="https://theporndude.com/zh/top-porn-tube-sites">免费成人涩情网站</a></li>
-            <li><a href="https://theporndude.com/zh/hentai-streaming-sites">免费动漫涩情网站</a></li>
+            <li><a href="https://theporndude.com/zh/top-porn-tube-sites">免费网站</a></li>
+            <li><a href="https://theporndude.com/zh/hentai-streaming-sites">免费网站</a></li>
             <li><a href="https://www.xbookcn.net/">成人中文免费小说</a></li>
             <li><a href="http://www.caoliuxs.vip/">成人免费草榴小说</a></li>
-            <li><a href="https://sesebooks.com/">免费成人黄涩小说</a></li>
-            <li><a href="https://www.fanqianglu.com/free/cnnovel">免费成人涩情小说最全</a></li>
-            <li><a href="https://theporndude.com/zh/best-erotic-stories-sites">涩情性爱故事网站</a></li>
+            <li><a href="https://sesebooks.com/">免费小说</a></li>
+            <li><a href="https://www.fanqianglu.com/free/cnnovel">免费小说最全</a></li>
+            <li><a href="https://theporndude.com/zh/best-erotic-stories-sites">故事网站</a></li>
         </ul>
     </aside>
-
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
-        <!-- 侧边栏内容 -->
-    </aside>
-
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
     <main class="app-list">
         <article class="app-item">
             <img src="https://files.catbox.moe/oadjeu.webp" alt="禁毒禁赌图标" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://files.catbox.moe/tqm99n.jpg">禁毒禁赌</a>
-                <div>
+                </div>
                 <div class="app-category"></div>
                 <div class="rating">1.0 ★ <span class="app-size">0.0MB</span></div>
             </div>
         </article>
-
         <article class="app-item">
             <img src="https://files.catbox.moe/p8u1al.webp" alt="绿茶VPN图标" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://abcd136.github.io/x/">绿茶VPN</a>
-                <div>
+                </div>
                 <div class="app-category">实用工具・工具</div>
                 <div class="rating">3.8 ★ <span class="app-size">6.42MB</span></div>
             </div>
         </article>
-        
-        
         <div class="app-item">
             <img src="https://files.catbox.moe/e42k1v.jpg" alt="魔方加速器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x1/" >魔方加速器</a>
+                    <a href="https://abcd136.github.io/x1/">魔方加速器</a>
                 </div>
                 <div class="app-category">实用工具・工具</div>
                 <div class="rating">5.2 ★ <span class="app-size">27.01MB</span></div>
             </div>
         </div>
-
         <div class="app-item">
             <img src="https://files.catbox.moe/8pqs56.png" alt="旋风加速器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x2/" >旋风加速器</a>
+                    <a href="https://abcd136.github.io/x2/">旋风加速器</a>
                 </div>
                 <div class="app-category">实用工具・小工具</div>
                 <div class="rating">4.8 ★ <span class="app-size">17.22MB</span></div>
             </div>
         </div>
-    
         <div class="app-item">
             <img src="https://files.catbox.moe/r1nrpo.png" alt="起飞VPN" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x3/" >起飞VPN</a>
+                    <a href="https://abcd136.github.io/x3/">起飞VPN</a>
                 </div>
                 <div class="app-category">实用工具・小工具</div>
                 <div class="rating">4.9 ★ <span class="app-size">76.60MB</span></div>
             </div>
         </div>
-    
         <div class="app-item">
             <img src="https://files.catbox.moe/7yqkxt.jpg" alt="迷雾通" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x4/" >迷雾通</a>
+                    <a href="https://abcd136.github.io/x4/">迷雾通</a>
                 </div>
                 <div class="app-category">实用工具・小工具</div>
                 <div class="rating">2.9 ★ <span class="app-size">29.97MB</span></div>
             </div>
         </div>
-    
         <div class="app-item">
             <img src="https://files.catbox.moe/88xttt.jpg" alt="ProtonVPN" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://abcd136.github.io/x5/" >ProtonVPN</a>
+                    <a href="https://abcd136.github.io/x5/">ProtonVPN</a>
                 </div>
                 <div class="app-category">实用工具・小工具</div>
                 <div class="rating">4.2 ★ <span class="app-size">25.72MB</span></div>
             </div>
         </div>
 
-        <div class="app-item">
+      <div class="app-item">
             <img src="https://files.catbox.moe/e091xk.png" alt="小美VPN" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
@@ -609,7 +523,7 @@
         </div>
 
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="白鲸" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="白鲸" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/xXECL0uh" >白鲸加速器</a>
@@ -895,7 +809,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="电脑VPN" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="电脑VPN" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://abcd136.github.io/x22/" >关于电脑VPN的问题</a>
@@ -950,7 +864,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="＃" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="＃" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://www.downloadnth.com/download.html" >nthLink</a>
@@ -961,7 +875,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="哔哩哔哩" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="哔哩哔哩" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/ctDRQY4h" >哔哩哔哩国际版</a>
@@ -972,7 +886,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="推特" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="推特" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/b2DRQf9w" >推特</a>
@@ -983,7 +897,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="youtube" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="youtube" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/KhDRQiDj" >油管</a>
@@ -994,7 +908,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="谷歌" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="谷歌" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/xJECutmX" >谷歌浏览器</a>
@@ -1005,7 +919,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="哔哩哔哩" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="哔哩哔哩" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/PODRQk9z" >脸盘</a>
@@ -1016,7 +930,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="百科全书" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="百科全书" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/pHDRQl7C" >自由的百科全书</a>
@@ -1027,7 +941,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="bing" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="bing" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/tBDRQoTw" >Bing</a>
@@ -1038,7 +952,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="NICONICO" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="NICONICO" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/E6DRQqxR" >NICONICO</a>
@@ -1049,7 +963,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="pixiv" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="pixiv" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/mODRQrgi" >pixiv</a>
@@ -1060,7 +974,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="Telegram" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="Telegram" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/1rDRQtz8" >电报</a>
@@ -1071,7 +985,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="VLC" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="VLC" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/KWDRQulJ" >VLC</a>
@@ -1082,7 +996,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="Discord" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="Discord" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/BZDRQSV4" >Discord</a>
@@ -1093,7 +1007,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="视频AE特效制作" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="视频AE特效制作" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/KHDR1TT2" >视频AE特效制作</a>
@@ -1104,7 +1018,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="FastSurf" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="FastSurf" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/oDDR1DXx" >FastSurfVPN</a>
@@ -1115,7 +1029,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="菜鸟" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="菜鸟" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/OdDR1ErY" >菜鸟免费VPN</a>
@@ -1126,7 +1040,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="虚拟" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="虚拟" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/R7DR10gy" >虚拟定位</a>
@@ -1137,7 +1051,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="车来了" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="车来了" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/ylDR1NEg" >车来了</a>
@@ -1148,7 +1062,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="APK" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="APK" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/8LDR1XbG" >apk去签名</a>
@@ -1159,7 +1073,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="P2P" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="P2P" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/vMDR1Zzp" >P2P下载器</a>
@@ -1170,7 +1084,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="被卡住的女孩" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="被卡住的女孩" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/k3DR11k6" >被卡住的女孩</a>
@@ -1181,7 +1095,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="奇妙奴隶教育化计划" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="奇妙奴隶教育化计划" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/mGDR146d" >奇妙奴隶教育化计划</a>
@@ -1192,7 +1106,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="吃人的柜子" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="吃人的柜子" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/fnDR1bZs" >吃人的柜子</a>
@@ -1203,7 +1117,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="你以为这样就能忍住射精吗" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="你以为这样就能忍住射精吗" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/oPDR1eCY" >你以为这样就能忍住射精吗？</a>
@@ -1214,7 +1128,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="睡奸模拟器" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="睡奸模拟器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/qdDR19M6" >睡奸模拟器</a>
@@ -1225,7 +1139,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="NTR编年史" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="NTR编年史" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/1UDR1fXT" >NTR编年史</a>
@@ -1236,7 +1150,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="直到有女朋友" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="直到有女朋友" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/FzDR1hSg" >直到有女朋友</a>
@@ -1247,7 +1161,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="人鱼の歌姫" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="人鱼の歌姫" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/qsAo6AN1" >人鱼の歌姫</a>
@@ -1258,7 +1172,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="Ane Chijo Max Heart" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="Ane Chijo Max Heart" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/haAr3vWp" >Ane Chijo Max Heart</a>
@@ -1269,7 +1183,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="オナホ教室 ～女子全員妊娠計画～" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="オナホ教室 ～女子全員妊娠計画～" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/KpCEGhMu" >オナホ教室 ～女子全員妊娠計画～</a>
@@ -1280,7 +1194,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="#" >隔空草逼
@@ -1299,7 +1213,7 @@
         
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="#" >好看的</a>
@@ -1318,7 +1232,7 @@
         
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="南京大屠杀影片" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="南京大屠杀影片" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/IyBUeFjV" >一部可能你从未看过的南京大屠杀影片</a>
@@ -1329,7 +1243,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="太残忍了！" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="太残忍了！" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/TABU3Gj7" >这日本人亲口说的，太残忍了！</a>
@@ -1340,7 +1254,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="黑太阳南京大屠杀" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="黑太阳南京大屠杀" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/sFDR2k3G" >黑太阳南京大屠杀</a>
@@ -1351,7 +1265,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="纪录片-欧美-《南京大屠杀》" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="纪录片-欧美-《南京大屠杀》" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/j7BUQRbh" >纪录片-欧美-《南京大屠杀》</a>
@@ -1362,7 +1276,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="（南京大屠杀的内幕）" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="（南京大屠杀的内幕）" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/s8BUQfTM" >（南京大屠杀的内幕）</a>
@@ -1373,7 +1287,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="建筑工地施工" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="建筑工地施工" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/TpDR3dNW" >1998年8月18日建筑工地施工过程中</a>
@@ -1384,7 +1298,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="ZArchiver" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="ZArchiver" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/LuAhiMrI" >ZArchiver</a>
@@ -1395,7 +1309,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="steam" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="steam" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/HLAhisuX" >steam</a>
@@ -1406,7 +1320,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="via" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="via" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/mcAhiIML" >via</a>
@@ -1417,7 +1331,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="opera" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="opera" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/CSAhiKLc" >opera浏览器</a>
@@ -1428,7 +1342,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="Shadowrocket" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="Shadowrocket" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/G9AhjI9L" >Shadowrocket</a>
@@ -1439,7 +1353,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="Clash" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="Clash" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/fLAhkDS5" >Clash</a>
@@ -1450,7 +1364,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="V2Ray" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="V2Ray" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/bRAhkOuX" >V2Ray</a>
@@ -1461,7 +1375,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="Hiddify" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="Hiddify" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/1mCnBCtL" >Hiddify</a>
@@ -1472,7 +1386,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="讯飞星火" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="讯飞星火" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://xinghuo.xfyun.cn/" >讯飞星火</a>
@@ -1483,7 +1397,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="文心一言" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="文心一言" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://yiyan.baidu.com/" >文心一言</a>
@@ -1494,7 +1408,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="opera" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="opera" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://tongyi.aliyun.com/" >通义千问</a>
@@ -1505,7 +1419,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="天工" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="天工" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://www.tiangong.cn/" >天工</a>
@@ -1516,7 +1430,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="秘塔AI搜索" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="秘塔AI搜索" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://metaso.cn/" >秘塔搜索</a>
@@ -1527,7 +1441,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="Kimi" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="Kimi" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://kimi.moonshot.cn/" >Kimi</a>
@@ -1538,7 +1452,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="智谱清言" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="智谱清言" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://chatglm.cn/?lang=zh" >智谱清言</a>
@@ -1549,7 +1463,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="豆包" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="豆包" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://www.doubao.com/chat/" >豆包</a>
@@ -1560,7 +1474,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="无涯·问知" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="无涯·问知" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://www.wuya-ai.com/" >无涯·问知</a>
@@ -1571,7 +1485,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="美搭社区" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="美搭社区" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://modelscope.cn/home" >魔搭社区</a>
@@ -1582,7 +1496,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="腾讯混元大模型" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="腾讯混元大模型" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://hunyuan.tencent.com/" >腾讯混元大模型</a>
@@ -1593,7 +1507,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="华为盘古" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="华为盘古" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://pangu.huaweicloud.com/" >华为盘古大模型</a>
@@ -1604,7 +1518,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="商汤日日新大模型" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="商汤日日新大模型" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://aistudy.baidu.com/" >商汤日日新大模型</a>
@@ -1615,7 +1529,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="世界上最牛的
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="世界上最牛的
 犹太财团--贝莱德" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
@@ -1628,7 +1542,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="犹太思想魔爪" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="犹太思想魔爪" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/mhBUh7BG" >犹太思想魔爪试图
@@ -1640,7 +1554,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="以色列正试图" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="以色列正试图" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/ggBUhvRD" >以色列正试图操纵
@@ -1652,7 +1566,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="网飞猫" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="网飞猫" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/bGAgjwXT" >网飞猫</a>
@@ -1663,7 +1577,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="暗网的网站" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="暗网的网站" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://files.catbox.moe/7uk1m5.zip" >285个暗网的网站</a>
@@ -1674,7 +1588,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="笔友阁新版" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="笔友阁新版" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/8eAKYyBS" >笔友阁新版</a>
@@ -1685,7 +1599,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="笔趣阁旧版" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="笔趣阁旧版" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/paAlQtth" >笔趣阁旧版</a>
@@ -1696,7 +1610,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="追书神器" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="追书神器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/zNAl30RB" >追书神器</a>
@@ -1707,7 +1621,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="番薯小说" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="番薯小说" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/hHAjZOUQ" >番薯小说</a>
@@ -1718,7 +1632,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="红桃小说" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="红桃小说" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/JIAjZX2t" >红桃小说</a>
@@ -1729,7 +1643,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="51吃瓜" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="51吃瓜" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/WCCBEweg" >51吃瓜</a>
@@ -1740,7 +1654,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="尾巴视频" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="尾巴视频" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/LdCBEyBT" >尾巴视频</a>
@@ -1751,7 +1665,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="opera" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="opera" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/XuCE26l2" >十八摸</a>
@@ -1762,7 +1676,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="Soulv" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="Soulv" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/ZnCE2v3y" >Soulv</a>
@@ -1773,7 +1687,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="微密猫" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="微密猫" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/xMCE2fYl" >微密猫</a>
@@ -1784,7 +1698,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="vidVIDEOS" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="vidVIDEOS" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/NwCE2hjH" >VIDEOS</a>
@@ -1795,7 +1709,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="百度网盘" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="百度网盘" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://pan.baidu.com/" >百度网盘</a>
@@ -1806,7 +1720,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="阿里网盘" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="阿里网盘" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://www.alipan.com/" >阿里网盘</a>
@@ -1817,7 +1731,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="115" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="115" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://m.115.com/" >115</a>
@@ -1828,7 +1742,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="蓝奏云" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="蓝奏云" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="http://lanzou.com/" >蓝奏云</a>
@@ -1839,7 +1753,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="中国移动云盘" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="中国移动云盘" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://yun.139.com/" >中国移动云盘</a>
@@ -1850,7 +1764,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="123云盘" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="123云盘" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://www.123pan.com/" >123云盘</a>
@@ -1861,7 +1775,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="文叔叔" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="文叔叔" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://www.wenshushu.cn/" >文叔叔</a>
@@ -1872,7 +1786,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="musetransfer" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="musetransfer" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://musetransfer.com/" >musetransfer</a>
@@ -1883,7 +1797,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="wetransfer" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="wetransfer" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://wetransfer.com/upload" >wetransfer</a>
@@ -1894,7 +1808,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="gofile" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="gofile" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/CSAhiKLc" >gofile</a>
@@ -1910,7 +1824,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="云中转" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="云中转" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://www.yunzhongzhuan.com/" >云中转</a>
@@ -1924,7 +1838,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="小飞机网盘" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="小飞机网盘" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://www.feijipan.com/" >小飞机网盘</a>
@@ -1938,7 +1852,7 @@
         </div>
 
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="Se" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="Se" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/G8DSFcNR" >Se</a>
@@ -1949,7 +1863,7 @@
         </div>
 
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="烧脑眼神王" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="烧脑眼神王" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/4cAgiJaq" >烧脑眼神王</a>
@@ -1960,7 +1874,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="单机小汽车游戏" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="单机小汽车游戏" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/h5Agkn7E" >单机小汽车游戏</a>
@@ -1971,7 +1885,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="钩鱼" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="钩鱼" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/IuAjh5Qd" >钩鱼</a>
@@ -1982,7 +1896,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="植物大战僵尸单机版" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="植物大战僵尸单机版" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://a.download.yunzhongzhuan.com/download/2853694/F2sj243G/base.apk?t=1714814120&o=yunzhongzhuan.com" >植物大战僵尸单机版</a>
@@ -1993,7 +1907,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="绯月" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="绯月" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://a.download.yunzhongzhuan.com/download/2856541/biqK5DhF/%E7%BB%AF%E6%9C%88.apk?t=1714989985&o=yunzhongzhuan.com" >绯月</a>
@@ -2004,7 +1918,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="部落冲突" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="部落冲突" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/vJAqQLbY" >部落冲突</a>
@@ -2015,7 +1929,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="单机自行车挑战" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="单机自行车挑战" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/uhDScylm" >单机自行车挑战</a>
@@ -2026,7 +1940,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="永恒世界" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="永恒世界" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/9SDScnSy" >永恒世界</a>
@@ -2037,7 +1951,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="女神的最佳交易" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="女神的最佳交易" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/qBDScqzT" >女神的最佳交易</a>
@@ -2048,7 +1962,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="万华镜1" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="万华镜1" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/FNDScJAF" >万华镜1</a>
@@ -2059,7 +1973,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="万华镜2.5" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="万华镜2.5" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/cHDScRhn" >万华镜2.5</a>
@@ -2070,7 +1984,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="万华镜2" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="万华镜2" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/NzDSdEAC" >万华镜2</a>
@@ -2081,7 +1995,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="万华镜3" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="万华镜3" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/v7DSd126" >万华镜3</a>
@@ -2092,7 +2006,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="万华镜4" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="万华镜4" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/vNDSd5F0" >万华镜4</a>
@@ -2103,7 +2017,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="万华镜5" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="万华镜5" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/sRDSdnUm" >万华镜5</a>
@@ -2114,7 +2028,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="生活" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="生活" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/4tAtpvyO" >生活</a>
@@ -2125,7 +2039,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="恶魔" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="恶魔" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/jkAtpyun" >恶魔</a>
@@ -2136,7 +2050,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="淫荡乘客" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="淫荡乘客" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/IbDSeE0r" >淫荡乘客</a>
@@ -2147,7 +2061,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="新天域" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="新天域" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/BZDSeZT1" >新天域</a>
@@ -2158,7 +2072,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="莎拉罗斯" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="莎拉罗斯" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/03DS5AZj" >莎拉罗斯的生存</a>
@@ -2169,7 +2083,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="NAA" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="NAA" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/snDS5PKL" >NAA</a>
@@ -2180,7 +2094,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="动漫之家" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="动漫之家" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://m.idmzj.com/" >动漫之家</a>
@@ -2191,7 +2105,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="acg动漫" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="acg动漫" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://www.acgvod.com/" >acg动漫</a>
@@ -2202,7 +2116,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="AGE动漫" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="AGE动漫" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="http://acgdm6.com/" >AGE动漫</a>
@@ -2213,7 +2127,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="AGE.TV" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="AGE.TV" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://m.agedm.org/" >AGE.TV</a>
@@ -2224,7 +2138,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="拷贝漫画" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="拷贝漫画" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/znCDIJ0Y" >拷贝漫画</a>
@@ -2235,7 +2149,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="漫画阅读器" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="漫画阅读器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/pfCDJZ2C" >漫画阅读器</a>
@@ -2246,7 +2160,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="Every Proxy" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="Every Proxy" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/urDS64Ri" >Every Proxy</a>
@@ -2257,7 +2171,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="PSP模拟器" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="PSP模拟器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/L4Ahlyrz" >PSP模拟器</a>
@@ -2268,7 +2182,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="RAR解压缩" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="RAR解压缩" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/8iAhlK2A" >RAR解压缩</a>
@@ -2279,7 +2193,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="小鸡模拟器" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="小鸡模拟器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/ZJAhmHj6" >小鸡模拟器</a>
@@ -2290,7 +2204,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="snaptube" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="snaptube" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/zPAhmWHk" >snaptube</a>
@@ -2301,7 +2215,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="reproductor" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="reproductor" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/u8Ahmydi" >reproductor</a>
@@ -2312,7 +2226,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="termux" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="termux" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/VUAjCqLL" >termux</a>
@@ -2323,7 +2237,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="家常菜" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="家常菜" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/ODAj11aa" >家常菜</a>
@@ -2334,7 +2248,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="增强图片" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="增强图片" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/szAjuG8B" >增强图片分辨率</a>
@@ -2345,7 +2259,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="万兴喵影" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="万兴喵影" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/KcAjh3Bt" >万兴喵影</a>
@@ -2356,7 +2270,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="热舞健身" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="热舞健身" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/jaAk4eV6" >热舞健身</a>
@@ -2367,7 +2281,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="人体位图解" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="人体位图解" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/0iAk4mtb" >人体位图解</a>
@@ -2378,7 +2292,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="视频压缩" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="视频压缩" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/gaAk6HsM" >视频压缩</a>
@@ -2389,7 +2303,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="小红书" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="小红书" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/BuAkm3EC" >小红书</a>
@@ -2400,7 +2314,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="迅雷" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="迅雷" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/HHDKbsut" >迅雷</a>
@@ -2411,7 +2325,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="知乎国际版" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="知乎国际版" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/KwAl0S6u" >知乎国际版</a>
@@ -2422,7 +2336,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="中医辨证开方" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="中医辨证开方" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/2RAl2LNq" >中医辨证开方</a>
@@ -2433,7 +2347,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="布丁扫描" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="布丁扫描" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/lYAqQaCU" >布丁扫描</a>
@@ -2444,7 +2358,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="ONS模拟器" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="ONS模拟器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/xmAtfl77" >ONS模拟器</a>
@@ -2455,7 +2369,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="GBA模拟器" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="GBA模拟器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/BSALCZMW" >GBA模拟器</a>
@@ -2466,7 +2380,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="凯格尔" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="凯格尔" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://a.download.yunzhongzhuan.com/download/2853027/9HIWHPXP/%E5%87%AF%E6%A0%BC%E5%B0%94_1.013.apk?t=1716803381&o=yunzhongzhuan.com" >凯格尔</a>
@@ -2477,7 +2391,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="拉伸运动" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="拉伸运动" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://a.download.yunzhongzhuan.com/download/2853028/btxjJEH3/%E6%8B%89%E4%BC%B8%E8%BF%90%E5%8A%A8_2.0.10.apk?t=1716803518&o=yunzhongzhuan.com" >拉伸运动</a>
@@ -2488,7 +2402,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="女性健身" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="女性健身" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://a.download.yunzhongzhuan.com/download/2853029/rJxo8cWQ/%E5%A5%B3%E6%80%A7%E5%81%A5%E8%BA%AB-%E5%A5%B3%E6%80%A7%E9%94%BB%E7%82%BC_1.5.6.apk?t=1716803569&o=yunzhongzhuan.com" >女性健身</a>
@@ -2499,7 +2413,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="男性减肥健身" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="男性减肥健身" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://a.download.yunzhongzhuan.com/download/2853030/L48G02KJ/%E7%94%B7%E6%80%A7%E5%87%8F%E8%82%A5%E5%81%A5%E8%BA%AB%E8%BD%AF%E4%BB%B6_2.3.2.apk?t=1716803641&o=yunzhongzhuan.com" >男性减肥健身</a>
@@ -2510,7 +2424,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="瑜伽" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="瑜伽" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://a.download.yunzhongzhuan.com/download/2853031/3zC5uW3u/%E7%91%9C%E4%BC%BD_1.4.9.apk?t=1716803698&o=yunzhongzhuan.com" >瑜伽</a>
@@ -2521,7 +2435,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="跑步记录" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="跑步记录" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://a.download.yunzhongzhuan.com/download/2853032/dUVGPo8f/%E8%B7%91%E6%AD%A5%E8%AE%B0%E5%BD%95_1.5.0.apk?t=1716803888&o=yunzhongzhuan.com" >跑步记录</a>
@@ -2532,7 +2446,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="搜图软件" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="搜图软件" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/tZAIjmFS" >搜图软件</a>
@@ -2543,7 +2457,7 @@
         </div>
         
         <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="吉里吉里模拟器" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="吉里吉里模拟器" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/6dAKB8bh" >吉里吉里模拟器</a>
@@ -2554,7 +2468,7 @@
             </div>
 
             <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="AdGuard" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="AdGuard" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/I5EFuEuQ" >AdGuard</a>
@@ -2565,7 +2479,7 @@
             </div>
 
                 <div class="app-item">
-            <img src="https://via.placeholder.com/50" alt="" class="app-icon">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="" class="app-icon">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/8hDAgCvQ" >Invisible_Pro</a>
@@ -2577,7 +2491,7 @@
             
        
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="浏览器" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="浏览器" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/GrEP4XHo">tor浏览器</a>
@@ -2588,7 +2502,7 @@
         </article>
 
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="分身" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="分身" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/4oEP4cnP">分身软件</a>
@@ -2600,7 +2514,7 @@
         
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="广告" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="广告" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/nfEP4vSq">去广告软件</a>
@@ -2611,7 +2525,7 @@
         </article>
 
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="广告" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="广告" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/NZEP4zXY">安卓去广告软件</a>
@@ -2622,7 +2536,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="安装器" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="安装器" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/qFEP4ihV">XAPK安装器</a>
@@ -2633,7 +2547,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="VPN" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="VPN" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/H7EP4mU2">WaselVPN</a>
@@ -2644,7 +2558,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="全球" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="全球" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/9xEPaCMF">全球测速</a>
@@ -2655,7 +2569,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="漫画" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="漫画" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/nQEPaNFT">漫画社</a>
@@ -2666,7 +2580,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="视频下载" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="视频下载" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/8WEPaZGP">B站视频下载</a>
@@ -2677,7 +2591,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="录屏" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="录屏" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/SKEPaanb">AZ录屏</a>
@@ -2688,7 +2602,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="免登陆" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="免登陆" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/YyEPadWr">youtube免登陆</a>
@@ -2699,7 +2613,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="全能" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="全能" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/R2EPa6Gm">扫描王全能宝</a>
@@ -2710,7 +2624,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="AI" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="AI" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/mhEPav8T">AskAI</a>
@@ -2721,7 +2635,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="内存" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="内存" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/bgEPal2x">内存加速器</a>
@@ -2732,7 +2646,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="代理" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="代理" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/ZIEPanvc">clash-meta</a>
@@ -2743,7 +2657,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="视频下载" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="视频下载" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/OXEParcE">youtube视频下载</a>
@@ -2754,7 +2668,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="chat" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="chat" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/ENEPaJ6j">AI chat</a>
@@ -2765,7 +2679,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="AI" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="AI" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/LEEPbcN6">AI让图片动</a>
@@ -2776,7 +2690,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="谷歌" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="谷歌" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/IKEPb8LX">Edge谷歌版</a>
@@ -2787,7 +2701,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="油管" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="油管" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/TOEPbf5q">油管第三方</a>
@@ -2798,7 +2712,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="代理" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="代理" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/BrEPcAmM">代理软件</a>
@@ -2809,7 +2723,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="关闭软件" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="关闭软件" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/CfEPc0fR">关闭后台软件</a>
@@ -2820,7 +2734,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/QlEPcMDg">IP地址检测</a>
@@ -2831,7 +2745,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="查找" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="查找" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/s9EPcPZg">查找图片视频位置</a>
@@ -2842,7 +2756,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="应用分身" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="应用分身" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/98EPcfuh">clone应用分身</a>
@@ -2853,7 +2767,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="热点" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="热点" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/uqEPclJ2">热点连接</a>
@@ -2864,7 +2778,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="文字" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="文字" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/oqEPctcw">为文字换谱写声音</a>
@@ -2875,7 +2789,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="chat" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="chat" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/i2EPdhWZ">chat Smith</a>
@@ -2886,7 +2800,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/V5EPdrV7">PH中文站</a>
@@ -2897,7 +2811,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="TikTok" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="TikTok" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/oJEPeB17">TikTok解锁版</a>
@@ -2908,7 +2822,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="播放器" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="播放器" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/SKEPeW3H">4K蓝光播放器</a>
@@ -2919,7 +2833,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="电报" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="电报" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/UOEPe8HS">Telegram共存版</a>
@@ -2930,7 +2844,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="海外版" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="海外版" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/r0EPekeg">猿辅导海外版</a>
@@ -2941,7 +2855,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="X站" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="X站" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/caEP5Gh7">XVIDEOS</a>
@@ -2952,7 +2866,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="教程" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="教程" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/34EP529U">永久节点视频教程</a>
@@ -2963,7 +2877,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="mp3" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="mp3" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/XhEP56LN">video-mp3</a>
@@ -2974,7 +2888,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="x" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="x" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/77EP5kdf">TelegramX</a>
@@ -2985,7 +2899,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="AI" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="AI" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/xHEP5shM">QuikArt</a>
@@ -2996,7 +2910,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="复制" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="复制" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/cyEP5KhM">剪切版</a>
@@ -3007,7 +2921,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/DbEP6Y4T">NexbotAI</a>
@@ -3018,7 +2932,7 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="AI" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="AI" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
                     <a href="https://share.feijipan.com/s/lvEP6bW8">GPT Notes</a>
@@ -3029,22 +2943,20 @@
         </article>
         
         <article class="app-item">
-            <img src="https://via.placeholder.com/50" alt="AI" class="app-icon" loading="lazy">
+            <img src="https://github.com/huixiao666/B/blob/main/1.png?raw=true" alt="AI" class="app-icon" loading="lazy">
             <div class="app-info">
                 <div class="app-name">
-                    <a href="https://via.placeholder.com/50">ChatOn</a>
+                    <a href="https://github.com/huixiao666/B/blob/main/1.png?raw=true">ChatOn</a>
                 <div>
                 <div class="app-category">实用工具・工具</div>
                 <div class="rating">1.0 ★ <span class="app-size">81.55MB</span></div>
             </div>
             </article>
         
-            </article>
+
     </main>
-
     <button class="floating-button floating-refresh" onclick="refreshPage()" aria-label="刷新页面">↻</button>
-<button class="floating-button floating-top" onclick="scrollToTop()" aria-label="返回顶部">↑</button>
-
+    <button class="floating-button floating-top" onclick="scrollToTop()" aria-label="返回顶部">↑</button>
     <script>
         // 使用防抖优化搜索功能
         function debounce(func, wait) {
@@ -3054,11 +2966,9 @@
                 timeout = setTimeout(() => func.apply(this, args), wait);
             };
         }
-
         const performSearch = debounce(() => {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const appItems = document.querySelectorAll('.app-item');
-            
             appItems.forEach(item => {
                 const appName = item.querySelector('.app-name').textContent.toLowerCase();
                 const appCategory = item.querySelector('.app-category').textContent.toLowerCase();
@@ -3066,14 +2976,13 @@
                 item.style.display = isVisible ? 'flex' : 'none';
             });
         }, 300);
-
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const sidebarOverlay = document.getElementById('sidebarOverlay');
-            
+            const body = document.body;
             sidebar.classList.toggle('active');
             sidebarOverlay.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
-            
+            body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
             // 添加键盘事件监听
             if (sidebar.classList.contains('active')) {
                 document.addEventListener('keydown', handleEscKey);
@@ -3081,13 +2990,11 @@
                 document.removeEventListener('keydown', handleEscKey);
             }
         }
-
         function handleEscKey(event) {
             if (event.key === 'Escape') {
                 toggleSidebar();
             }
         }
-
         // 优化滚动到顶部的功能
         const scrollToTop = () => {
             window.scrollTo({
@@ -3095,19 +3002,16 @@
                 behavior: 'smooth'
             });
         };
-
         // 优化页面刷新功能
         const refreshPage = () => {
             window.location.reload();
         };
-
         // 添加搜索框回车事件监听
         document.getElementById('searchInput').addEventListener('keyup', (event) => {
             if (event.key === 'Enter') {
                 performSearch();
             }
         });
-
         // 添加图片加载失败处理
         document.querySelectorAll('.app-icon').forEach(img => {
             img.onerror = function() {
@@ -3115,7 +3019,6 @@
                 this.alt = '图片加载失败';
             };
         });
-
         // 添加页面加载完成后的优化
         document.addEventListener('DOMContentLoaded', () => {
             // 预加载图片
@@ -3128,35 +3031,42 @@
                 document.head.appendChild(preloadLink);
             });
         });
-        
-        function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const sidebarOverlay = document.getElementById('sidebarOverlay');
-    const body = document.body;
-    
-    sidebar.classList.toggle('active');
-    
-    if (sidebar.classList.contains('active')) {
-        sidebarOverlay.style.display = 'block';
-        body.style.overflow = 'hidden'; // 防止背景滚动
-        
-        // 添加触摸滑动关闭支持
-        let startX = 0;
-        let currentX = 0;
-        
+        // 添加侧边栏滑动关闭功能
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+        document.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchEndX - touchStartX;
+            // 从屏幕左边缘向右滑动打开菜单
+            if (diff > 50 && touchStartX < 30) {
+                const sidebar = document.getElementById('sidebar');
+                if (!sidebar.classList.contains('active')) {
+                    toggleSidebar();
+                }
+            }
+        });
+        // 添加双击关闭侧边栏功能
+        document.getElementById('sidebar').addEventListener('dblclick', (e) => {
+            if (e.target.tagName !== 'A') { // 不是链接时才触发
+                toggleSidebar();
+            }
+        });
+        // 添加侧边栏触摸滑动关闭支持
+        document.getElementById('sidebar').addEventListener('touchstart', handleTouchStart);
+        document.getElementById('sidebar').addEventListener('touchmove', handleTouchMove);
+        document.getElementById('sidebar').addEventListener('touchend', handleTouchEnd);
         function handleTouchStart(e) {
             startX = e.touches[0].clientX;
         }
-        
         function handleTouchMove(e) {
             currentX = e.touches[0].clientX;
             const diff = currentX - startX;
-            
             if (diff < 0) {
                 sidebar.style.transform = `translateX(${diff}px)`;
             }
         }
-        
         function handleTouchEnd() {
             const diff = currentX - startX;
             if (diff < -50) { // 如果滑动距离超过50px
@@ -3164,47 +3074,6 @@
             }
             sidebar.style.transform = '';
         }
-        
-        sidebar.addEventListener('touchstart', handleTouchStart);
-        sidebar.addEventListener('touchmove', handleTouchMove);
-        sidebar.addEventListener('touchend', handleTouchEnd);
-        
-    } else {
-        sidebarOverlay.style.display = 'none';
-        body.style.overflow = '';
-        
-        // 移除触摸事件监听
-        sidebar.removeEventListener('touchstart', handleTouchStart);
-        sidebar.removeEventListener('touchmove', handleTouchMove);
-        sidebar.removeEventListener('touchend', handleTouchEnd);
-    }
-}
-
-// 添加双击关闭功能
-document.getElementById('sidebar').addEventListener('dblclick', (e) => {
-    if (e.target.tagName !== 'A') { // 不是链接时才触发
-        toggleSidebar();
-    }
-});
-
-// 添加滑动手势支持
-let touchStartX = 0;
-document.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].clientX;
-});
-
-document.addEventListener('touchend', (e) => {
-    const touchEndX = e.changedTouches[0].clientX;
-    const diff = touchEndX - touchStartX;
-    
-    // 从屏幕左边缘向右滑动打开菜单
-    if (diff > 50 && touchStartX < 30) {
-        const sidebar = document.getElementById('sidebar');
-        if (!sidebar.classList.contains('active')) {
-            toggleSidebar();
-        }
-    }
-});
     </script>
 </body>
 </html>
